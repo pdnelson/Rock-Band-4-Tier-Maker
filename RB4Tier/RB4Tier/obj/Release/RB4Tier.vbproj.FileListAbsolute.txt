@@ -1,0 +1,20 @@
+c:\users\rick\documents\visual studio 2013\Projects\RB4Tier\RB4Tier\bin\Release\RB4Tier.exe.config
+c:\users\rick\documents\visual studio 2013\Projects\RB4Tier\RB4Tier\bin\Release\RB4Tier.exe
+c:\users\rick\documents\visual studio 2013\Projects\RB4Tier\RB4Tier\bin\Release\RB4Tier.pdb
+c:\users\rick\documents\visual studio 2013\Projects\RB4Tier\RB4Tier\bin\Release\RB4Tier.xml
+c:\users\rick\documents\visual studio 2013\Projects\RB4Tier\RB4Tier\obj\Release\RB4Tier.frmRB4Tier.resources
+c:\users\rick\documents\visual studio 2013\Projects\RB4Tier\RB4Tier\obj\Release\RB4Tier.Resources.resources
+c:\users\rick\documents\visual studio 2013\Projects\RB4Tier\RB4Tier\obj\Release\RB4Tier.vbproj.GenerateResource.Cache
+c:\users\rick\documents\visual studio 2013\Projects\RB4Tier\RB4Tier\obj\Release\RB4Tier.exe
+c:\users\rick\documents\visual studio 2013\Projects\RB4Tier\RB4Tier\obj\Release\RB4Tier.xml
+c:\users\rick\documents\visual studio 2013\Projects\RB4Tier\RB4Tier\obj\Release\RB4Tier.pdb
+G:\Documents\Random Files\programs and stuff taht I made\tier thing\RB4Tier\RB4Tier\obj\Release\RB4Tier.frmRB4Tier.resources
+G:\Documents\Random Files\programs and stuff taht I made\tier thing\RB4Tier\RB4Tier\obj\Release\RB4Tier.Resources.resources
+G:\Documents\Random Files\programs and stuff taht I made\tier thing\RB4Tier\RB4Tier\obj\Release\RB4Tier.vbproj.GenerateResource.Cache
+G:\Documents\Random Files\programs and stuff taht I made\tier thing\RB4Tier\RB4Tier\bin\Release\Rock Band 4 Tier Maker.exe.config
+G:\Documents\Random Files\programs and stuff taht I made\tier thing\RB4Tier\RB4Tier\bin\Release\Rock Band 4 Tier Maker.exe
+G:\Documents\Random Files\programs and stuff taht I made\tier thing\RB4Tier\RB4Tier\bin\Release\Rock Band 4 Tier Maker.pdb
+G:\Documents\Random Files\programs and stuff taht I made\tier thing\RB4Tier\RB4Tier\bin\Release\Rock Band 4 Tier Maker.xml
+G:\Documents\Random Files\programs and stuff taht I made\tier thing\RB4Tier\RB4Tier\obj\Release\Rock Band 4 Tier Maker.exe
+G:\Documents\Random Files\programs and stuff taht I made\tier thing\RB4Tier\RB4Tier\obj\Release\Rock Band 4 Tier Maker.xml
+G:\Documents\Random Files\programs and stuff taht I made\tier thing\RB4Tier\RB4Tier\obj\Release\Rock Band 4 Tier Maker.pdb
