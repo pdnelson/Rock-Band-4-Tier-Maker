@@ -18,3 +18,7 @@ G:\Documents\Random Files\programs and stuff taht I made\tier thing\RB4Tier\RB4T
 G:\Documents\Random Files\programs and stuff taht I made\tier thing\RB4Tier\RB4Tier\obj\Release\Rock Band 4 Tier Maker.exe
 G:\Documents\Random Files\programs and stuff taht I made\tier thing\RB4Tier\RB4Tier\obj\Release\Rock Band 4 Tier Maker.xml
 G:\Documents\Random Files\programs and stuff taht I made\tier thing\RB4Tier\RB4Tier\obj\Release\Rock Band 4 Tier Maker.pdb
+G:\Documents\Random Files\programs and stuff taht I made\tier thing\RB4Tier\RB4Tier\bin\Release\Rock Band 4 Tier Maker.exe.manifest
+G:\Documents\Random Files\programs and stuff taht I made\tier thing\RB4Tier\RB4Tier\bin\Release\Rock Band 4 Tier Maker.application
+G:\Documents\Random Files\programs and stuff taht I made\tier thing\RB4Tier\RB4Tier\obj\Release\Rock Band 4 Tier Maker.exe.manifest
+G:\Documents\Random Files\programs and stuff taht I made\tier thing\RB4Tier\RB4Tier\obj\Release\Rock Band 4 Tier Maker.application

@@ -127,7 +127,7 @@
   <data name="picTemplate.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAABZgAAAE5CAYAAAAdokWcAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAFz6SURBVHhe7d0HvBxV+f/xv/5QBCQQpBN6LwFCTwJI7yJV
+        YQUAAAAJcEhZcwAADsEAAA7BAbiRa+0AAFz6SURBVHhe7d0HvBxV+f/xv/5QBCQQpBN6LwFCTwJI7yJV
         eu+YIL0GpIOA9CJSIr0akF5FEUIA6QEpoQgBqSICSvX873fuPjezc5/ds3f33Dsb+Dyv1/ulnDs7c3KT
         fWbmmTPn/L+OCAAAAAAAAAAANMFtBAAAAAAAAAAgxm0EAAAAAAAAACDGbQQAAAAAAAAAIMZtBAAAAAAA
         AAAgxm0EAAAAAAAAACDGbQQAAAAAAAAAIMZtBAAAAAAAAAAgxm0EAAAAAAAAACDGbQQAAAAAAAAAIMZt
@@ -525,6 +525,16 @@
         AAAQ4zYCAAAAAAAAABDjNgIAAAAAAAAAEOM2AgAAAAAAAAAQ4zYCAAAAAAAAABDjNgIAAAAAAAAAEOM2
         AgAAAAAAAAAQ4zYCAAAAAAAAABDjNgIAAAAAAAAAEOM2AgAAAAAAAAAQ4zYCAAAAAAAAABDjNgIAAAAA
         AAAAUMf/C/8fVHMX9gJ3agkAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="lblBorderTop.Text" xml:space="preserve">
+    <value>weeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweewee
+
+</value>
+  </data>
+  <data name="lblBorderBottom.Text" xml:space="preserve">
+    <value>weeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweeweewee
+
 </value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

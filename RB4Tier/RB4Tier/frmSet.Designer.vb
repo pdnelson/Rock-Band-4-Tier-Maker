@@ -24,7 +24,6 @@ Partial Class frmRB4Tier
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmRB4Tier))
         Me.grpSongInfo = New System.Windows.Forms.GroupBox()
-        Me.picPreview = New System.Windows.Forms.PictureBox()
         Me.drpGenre = New System.Windows.Forms.ComboBox()
         Me.txtYear = New System.Windows.Forms.TextBox()
         Me.btnArt = New System.Windows.Forms.Button()
@@ -52,6 +51,16 @@ Partial Class frmRB4Tier
         Me.lblAlbum = New System.Windows.Forms.Label()
         Me.lblGenreT = New System.Windows.Forms.Label()
         Me.lblYear = New System.Windows.Forms.Label()
+        Me.mnuCreate = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuExport = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuCopy = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuClear = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuHelp = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuAbout = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuMenuStrip = New System.Windows.Forms.MenuStrip()
+        Me.mnuView = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuHide = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuShow = New System.Windows.Forms.ToolStripMenuItem()
         Me.picCover = New System.Windows.Forms.PictureBox()
         Me.picBassDevil = New System.Windows.Forms.PictureBox()
         Me.picBass4 = New System.Windows.Forms.PictureBox()
@@ -81,24 +90,17 @@ Partial Class frmRB4Tier
         Me.picNoDrums = New System.Windows.Forms.PictureBox()
         Me.picNoVocals = New System.Windows.Forms.PictureBox()
         Me.picNoGuitar = New System.Windows.Forms.PictureBox()
-        Me.mnuCreate = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuExport = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuCopy = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuClear = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuHelp = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuAbout = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuMenuStrip = New System.Windows.Forms.MenuStrip()
-        Me.mnuView = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuHide = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuShow = New System.Windows.Forms.ToolStripMenuItem()
+        Me.picPreview = New System.Windows.Forms.PictureBox()
         Me.picTemplate = New System.Windows.Forms.PictureBox()
+        Me.lblBorderTop = New System.Windows.Forms.Label()
+        Me.lblBorderBottom = New System.Windows.Forms.Label()
         Me.grpSongInfo.SuspendLayout()
-        CType(Me.picPreview, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpDifficulties.SuspendLayout()
         CType(Me.trkGuitar, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.trkDrums, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.trkVocals, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.trkBass, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.mnuMenuStrip.SuspendLayout()
         CType(Me.picCover, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picBassDevil, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picBass4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -128,7 +130,7 @@ Partial Class frmRB4Tier
         CType(Me.picNoDrums, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picNoVocals, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picNoGuitar, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.mnuMenuStrip.SuspendLayout()
+        CType(Me.picPreview, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picTemplate, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -151,16 +153,6 @@ Partial Class frmRB4Tier
         Me.grpSongInfo.TabIndex = 0
         Me.grpSongInfo.TabStop = False
         Me.grpSongInfo.Text = "General Song Information"
-        '
-        'picPreview
-        '
-        Me.picPreview.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.picPreview.Image = Global.RB4Tier.My.Resources.Resources.artpreview
-        Me.picPreview.Location = New System.Drawing.Point(162, 140)
-        Me.picPreview.Name = "picPreview"
-        Me.picPreview.Size = New System.Drawing.Size(96, 96)
-        Me.picPreview.TabIndex = 7
-        Me.picPreview.TabStop = False
         '
         'drpGenre
         '
@@ -430,6 +422,72 @@ Partial Class frmRB4Tier
         Me.lblYear.Size = New System.Drawing.Size(56, 18)
         Me.lblYear.TabIndex = 45
         Me.lblYear.Text = "[Year]"
+        '
+        'mnuCreate
+        '
+        Me.mnuCreate.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuExport, Me.mnuCopy, Me.mnuClear})
+        Me.mnuCreate.Name = "mnuCreate"
+        Me.mnuCreate.Size = New System.Drawing.Size(52, 20)
+        Me.mnuCreate.Text = "&Create"
+        '
+        'mnuExport
+        '
+        Me.mnuExport.Name = "mnuExport"
+        Me.mnuExport.Size = New System.Drawing.Size(171, 22)
+        Me.mnuExport.Text = "&Export to Image File"
+        '
+        'mnuCopy
+        '
+        Me.mnuCopy.Name = "mnuCopy"
+        Me.mnuCopy.Size = New System.Drawing.Size(171, 22)
+        Me.mnuCopy.Text = "&Copy to Clipboard"
+        '
+        'mnuClear
+        '
+        Me.mnuClear.Name = "mnuClear"
+        Me.mnuClear.Size = New System.Drawing.Size(171, 22)
+        Me.mnuClear.Text = "Clear &All"
+        '
+        'mnuHelp
+        '
+        Me.mnuHelp.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuAbout})
+        Me.mnuHelp.Name = "mnuHelp"
+        Me.mnuHelp.Size = New System.Drawing.Size(40, 20)
+        Me.mnuHelp.Text = "&Help"
+        '
+        'mnuAbout
+        '
+        Me.mnuAbout.Name = "mnuAbout"
+        Me.mnuAbout.Size = New System.Drawing.Size(103, 22)
+        Me.mnuAbout.Text = "About"
+        '
+        'mnuMenuStrip
+        '
+        Me.mnuMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuCreate, Me.mnuView, Me.mnuHelp})
+        Me.mnuMenuStrip.Location = New System.Drawing.Point(0, 0)
+        Me.mnuMenuStrip.Name = "mnuMenuStrip"
+        Me.mnuMenuStrip.Size = New System.Drawing.Size(1431, 24)
+        Me.mnuMenuStrip.TabIndex = 4
+        Me.mnuMenuStrip.Text = "MenuStrip1"
+        '
+        'mnuView
+        '
+        Me.mnuView.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuHide, Me.mnuShow})
+        Me.mnuView.Name = "mnuView"
+        Me.mnuView.Size = New System.Drawing.Size(41, 20)
+        Me.mnuView.Text = "&View"
+        '
+        'mnuHide
+        '
+        Me.mnuHide.Name = "mnuHide"
+        Me.mnuHide.Size = New System.Drawing.Size(141, 22)
+        Me.mnuHide.Text = "&Hide Preview"
+        '
+        'mnuShow
+        '
+        Me.mnuShow.Name = "mnuShow"
+        Me.mnuShow.Size = New System.Drawing.Size(141, 22)
+        Me.mnuShow.Text = "&Show Preview"
         '
         'picCover
         '
@@ -717,71 +775,15 @@ Partial Class frmRB4Tier
         Me.picNoGuitar.TabIndex = 7
         Me.picNoGuitar.TabStop = False
         '
-        'mnuCreate
+        'picPreview
         '
-        Me.mnuCreate.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuExport, Me.mnuCopy, Me.mnuClear})
-        Me.mnuCreate.Name = "mnuCreate"
-        Me.mnuCreate.Size = New System.Drawing.Size(52, 20)
-        Me.mnuCreate.Text = "&Create"
-        '
-        'mnuExport
-        '
-        Me.mnuExport.Name = "mnuExport"
-        Me.mnuExport.Size = New System.Drawing.Size(171, 22)
-        Me.mnuExport.Text = "&Export to Image File"
-        '
-        'mnuCopy
-        '
-        Me.mnuCopy.Name = "mnuCopy"
-        Me.mnuCopy.Size = New System.Drawing.Size(171, 22)
-        Me.mnuCopy.Text = "&Copy to Clipboard"
-        '
-        'mnuClear
-        '
-        Me.mnuClear.Name = "mnuClear"
-        Me.mnuClear.Size = New System.Drawing.Size(171, 22)
-        Me.mnuClear.Text = "Clear &All"
-        '
-        'mnuHelp
-        '
-        Me.mnuHelp.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuAbout})
-        Me.mnuHelp.Name = "mnuHelp"
-        Me.mnuHelp.Size = New System.Drawing.Size(40, 20)
-        Me.mnuHelp.Text = "&Help"
-        '
-        'mnuAbout
-        '
-        Me.mnuAbout.Name = "mnuAbout"
-        Me.mnuAbout.Size = New System.Drawing.Size(103, 22)
-        Me.mnuAbout.Text = "About"
-        '
-        'mnuMenuStrip
-        '
-        Me.mnuMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuCreate, Me.mnuView, Me.mnuHelp})
-        Me.mnuMenuStrip.Location = New System.Drawing.Point(0, 0)
-        Me.mnuMenuStrip.Name = "mnuMenuStrip"
-        Me.mnuMenuStrip.Size = New System.Drawing.Size(1431, 24)
-        Me.mnuMenuStrip.TabIndex = 4
-        Me.mnuMenuStrip.Text = "MenuStrip1"
-        '
-        'mnuView
-        '
-        Me.mnuView.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuHide, Me.mnuShow})
-        Me.mnuView.Name = "mnuView"
-        Me.mnuView.Size = New System.Drawing.Size(41, 20)
-        Me.mnuView.Text = "&View"
-        '
-        'mnuHide
-        '
-        Me.mnuHide.Name = "mnuHide"
-        Me.mnuHide.Size = New System.Drawing.Size(141, 22)
-        Me.mnuHide.Text = "&Hide Preview"
-        '
-        'mnuShow
-        '
-        Me.mnuShow.Name = "mnuShow"
-        Me.mnuShow.Size = New System.Drawing.Size(141, 22)
-        Me.mnuShow.Text = "&Show Preview"
+        Me.picPreview.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.picPreview.Image = Global.RB4Tier.My.Resources.Resources.artpreview
+        Me.picPreview.Location = New System.Drawing.Point(162, 140)
+        Me.picPreview.Name = "picPreview"
+        Me.picPreview.Size = New System.Drawing.Size(96, 96)
+        Me.picPreview.TabIndex = 7
+        Me.picPreview.TabStop = False
         '
         'picTemplate
         '
@@ -792,12 +794,34 @@ Partial Class frmRB4Tier
         Me.picTemplate.TabIndex = 47
         Me.picTemplate.TabStop = False
         '
+        'lblBorderTop
+        '
+        Me.lblBorderTop.AutoSize = True
+        Me.lblBorderTop.BackColor = System.Drawing.Color.Black
+        Me.lblBorderTop.Location = New System.Drawing.Point(0, 292)
+        Me.lblBorderTop.Name = "lblBorderTop"
+        Me.lblBorderTop.Size = New System.Drawing.Size(1807, 26)
+        Me.lblBorderTop.TabIndex = 48
+        Me.lblBorderTop.Text = resources.GetString("lblBorderTop.Text")
+        '
+        'lblBorderBottom
+        '
+        Me.lblBorderBottom.AutoSize = True
+        Me.lblBorderBottom.BackColor = System.Drawing.Color.Black
+        Me.lblBorderBottom.Location = New System.Drawing.Point(-172, 612)
+        Me.lblBorderBottom.Name = "lblBorderBottom"
+        Me.lblBorderBottom.Size = New System.Drawing.Size(1807, 26)
+        Me.lblBorderBottom.TabIndex = 49
+        Me.lblBorderBottom.Text = resources.GetString("lblBorderBottom.Text")
+        '
         'frmRB4Tier
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(212, Byte), Integer), CType(CType(208, Byte), Integer), CType(CType(200, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(1431, 615)
+        Me.ClientSize = New System.Drawing.Size(1431, 636)
+        Me.Controls.Add(Me.lblBorderBottom)
+        Me.Controls.Add(Me.lblBorderTop)
         Me.Controls.Add(Me.lblYear)
         Me.Controls.Add(Me.lblGenreT)
         Me.Controls.Add(Me.lblAlbum)
@@ -843,13 +867,14 @@ Partial Class frmRB4Tier
         Me.Text = "Rock Band 4 Tier Maker"
         Me.grpSongInfo.ResumeLayout(False)
         Me.grpSongInfo.PerformLayout()
-        CType(Me.picPreview, System.ComponentModel.ISupportInitialize).EndInit()
         Me.grpDifficulties.ResumeLayout(False)
         Me.grpDifficulties.PerformLayout()
         CType(Me.trkGuitar, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.trkDrums, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.trkVocals, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.trkBass, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.mnuMenuStrip.ResumeLayout(False)
+        Me.mnuMenuStrip.PerformLayout()
         CType(Me.picCover, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.picBassDevil, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.picBass4, System.ComponentModel.ISupportInitialize).EndInit()
@@ -879,8 +904,7 @@ Partial Class frmRB4Tier
         CType(Me.picNoDrums, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.picNoVocals, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.picNoGuitar, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.mnuMenuStrip.ResumeLayout(False)
-        Me.mnuMenuStrip.PerformLayout()
+        CType(Me.picPreview, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.picTemplate, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -955,5 +979,7 @@ Partial Class frmRB4Tier
     Friend WithEvents mnuShow As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents picPreview As System.Windows.Forms.PictureBox
     Friend WithEvents picTemplate As System.Windows.Forms.PictureBox
+    Friend WithEvents lblBorderTop As System.Windows.Forms.Label
+    Friend WithEvents lblBorderBottom As System.Windows.Forms.Label
 
 End Class

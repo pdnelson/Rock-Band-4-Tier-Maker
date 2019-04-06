@@ -2,6 +2,7 @@
 Imports System.Reflection
 Imports System.Drawing.Text
 Imports System.Runtime.InteropServices
+Imports System.Drawing.Printing
 
 Public Class frmRB4Tier
 
@@ -11,8 +12,8 @@ Public Class frmRB4Tier
     Dim vocal(6) As PictureBox
     Dim drum(6) As PictureBox
     Dim albumArt As Bitmap
-    Dim final As Bitmap
-    Dim finalEdit As Graphics
+    Dim privateFonts As New PrivateFontCollection()
+    Dim privateFontsB As New PrivateFontCollection()
 
     'FORM LOAD
     Private Sub frmRB4Tier_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -38,6 +39,7 @@ Public Class frmRB4Tier
             Me.Size = New Size(589, 329)
             mnuHide.Checked = True
             mnuShow.Checked = False
+            lblBorderTop.Visible = False
         Else
             mnuShow.Checked = True
         End If
@@ -46,8 +48,6 @@ Public Class frmRB4Tier
         albumArt = My.Resources.nopic
 
         'opens the font files from the system folder
-        Dim privateFonts As New PrivateFontCollection()
-        Dim privateFontsB As New PrivateFontCollection()
         privateFonts.AddFontFile("Sys\Fonts\realfont.ttf")
         privateFontsB.AddFontFile("Sys\Fonts\realfontbold.ttf")
         Dim fnt As New System.Drawing.Font(privateFonts.Families(0), 32)
@@ -58,6 +58,10 @@ Public Class frmRB4Tier
         lblAlbum.Font = fnt
         lblGenreT.Font = fnt
         lblYear.Font = fnt
+
+        'dispose temporary fonts so they don't hog memory
+        fntB.Dispose()
+        fnt.Dispose()
 
     End Sub
 
@@ -191,7 +195,7 @@ Public Class frmRB4Tier
         Dim strFileName As String
         fd.Title = "Browse for Album Cover Art"
         fd.InitialDirectory = "Libraries\Pictures"
-        fd.Filter = "All Files (*.*)|*.*|PNG|*.png|JPG|*.jpg|BMP|*.bmp|GIF|*.gif"
+        fd.Filter = "Image Files|*.png;*.jpg;*.bmp;*.gif|PNG|*.png|JPG|*.jpg|BMP|*.bmp|GIF|*.gif"
         fd.FilterIndex = 1
         fd.RestoreDirectory = True
 
@@ -238,11 +242,12 @@ Public Class frmRB4Tier
 
         'saves the image
         If fd.ShowDialog() = DialogResult.OK Then
-            Dim SaveImage As New Bitmap(generateImage())
+            Dim saveImage As New Bitmap(generateImage())
             strFileName = fd.FileName
-            SaveImage.Save(strFileName, Imaging.ImageFormat.Png)
+            saveImage.Save(strFileName, Imaging.ImageFormat.Png)
+
+            'dispose of temporary images so they don't hog memory
             SaveImage.Dispose()
-            final.Dispose()
         End If
 
     End Sub
@@ -250,10 +255,14 @@ Public Class frmRB4Tier
     'COPY TO CLIPBOARD
     Private Sub CopyToClipboardToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles mnuCopy.Click
 
-        'sets clipboard contents to the generateImage() output
-        My.Computer.Clipboard.SetImage(generateImage())
+        'temporary image variable
+        Dim saveImage As New Bitmap(generateImage())
 
-        final.Dispose()
+        'sets clipboard contents to the generateImage() output
+        My.Computer.Clipboard.SetImage(saveImage)
+
+        'dispose the image so it doesn't hog memory
+        saveImage.Dispose()
 
     End Sub
 
@@ -319,6 +328,7 @@ Public Class frmRB4Tier
     Private Sub mnuHide_Click(sender As Object, e As EventArgs) Handles mnuHide.Click
 
         'sets checkboxes, then size
+        lblBorderTop.Visible = False
         mnuHide.Checked = True
         mnuShow.Checked = False
         Me.Size = New Size(589, 329)
@@ -331,9 +341,10 @@ Public Class frmRB4Tier
     Private Sub mnuShow_Click(sender As Object, e As EventArgs) Handles mnuShow.Click
 
         'sets checkboxes, then size
+        lblBorderTop.Visible = True
         mnuHide.Checked = False
         mnuShow.Checked = True
-        Me.Size = New Size(1439, 642)
+        Me.Size = New Size(1439, 661)
 
         'saves the user's setting
         saveToFile("Sys\Settings\view.txt", "show")
@@ -341,7 +352,7 @@ Public Class frmRB4Tier
 
     'ABOUT
     Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles mnuAbout.Click
-        MessageBox.Show("Rock Band 4 Tier Maker is a free, open source program designed in 2019 by Patrick Nelson (BetaMaster64)." + vbCrLf + vbCrLf + "Version 0.9" + vbCrLf + vbCrLf + "Found a bug? Shoot me an email at supermariokart98@gmail.com!", "About")
+        MessageBox.Show("Rock Band 4 Tier Maker is a free, open source program designed in 2019 by Patrick Nelson (BetaMaster64)." + vbCrLf + vbCrLf + "Version 1.0" + vbCrLf + vbCrLf + "Found a bug? Shoot me an email at supermariokart98@gmail.com!", "About")
     End Sub
 
 
@@ -370,87 +381,72 @@ Public Class frmRB4Tier
         'no instrument
         If t.Value = 0 Then
             p(0).Visible = True
-            p(1).Visible = False
-            p(2).Visible = False
-            p(3).Visible = False
-            p(4).Visible = False
-            p(5).Visible = False
-            p(6).Visible = False
+            For i As Integer = 1 To 6
+                p(i).Visible = False
+            Next
 
-            'devils (very hard)
+            'easy peasy
         ElseIf t.Value = 1 Then
-            p(0).Visible = False
-            p(1).Visible = False
-            p(2).Visible = False
-            p(3).Visible = False
-            p(4).Visible = False
-            p(5).Visible = False
-            p(6).Visible = False
-
-            '0 dots
-        ElseIf t.Value = 2 Then
-            p(0).Visible = False
-            p(1).Visible = False
-
-            p(2).Visible = False
-            p(3).Visible = False
-            p(4).Visible = False
-            p(5).Visible = False
-            p(6).Visible = True
+            For i As Integer = 0 To 6
+                p(i).Visible = False
+            Next
 
             '1 dot
-        ElseIf t.Value = 3 Then
-            p(0).Visible = False
-            p(1).Visible = False
-
-            p(2).Visible = False
-            p(3).Visible = False
-            p(4).Visible = False
-            p(5).Visible = True
+        ElseIf t.Value = 2 Then
             p(6).Visible = True
+            For i As Integer = 0 To 5
+                p(i).Visible = False
+            Next
 
             '2 dots
-        ElseIf t.Value = 4 Then
-            p(0).Visible = False
-            p(1).Visible = False
-
-            p(2).Visible = False
-            p(3).Visible = False
-            p(4).Visible = True
-            p(5).Visible = True
-            p(6).Visible = True
+        ElseIf t.Value = 3 Then
+                p(0).Visible = False
+                p(1).Visible = False
+                p(2).Visible = False
+                p(3).Visible = False
+                p(4).Visible = False
+                p(5).Visible = True
+                p(6).Visible = True
 
             '3 dots
-        ElseIf t.Value = 5 Then
-            p(0).Visible = False
-            p(1).Visible = False
-
-            p(2).Visible = False
-            p(3).Visible = True
-            p(4).Visible = True
-            p(5).Visible = True
-            p(6).Visible = True
+        ElseIf t.Value = 4 Then
+                p(0).Visible = False
+                p(1).Visible = False
+                p(2).Visible = False
+                p(3).Visible = False
+                p(4).Visible = True
+                p(5).Visible = True
+                p(6).Visible = True
 
             '4 dots
-        ElseIf t.Value = 6 Then
-            p(0).Visible = False
-            p(1).Visible = False
-
-            p(2).Visible = True
-            p(3).Visible = True
-            p(4).Visible = True
-            p(5).Visible = True
-            p(6).Visible = True
+        ElseIf t.Value = 5 Then
+                p(0).Visible = False
+                p(1).Visible = False
+                p(2).Visible = False
+                p(3).Visible = True
+                p(4).Visible = True
+                p(5).Visible = True
+                p(6).Visible = True
 
             '5 dots
+        ElseIf t.Value = 6 Then
+                p(0).Visible = False
+                p(1).Visible = False
+                p(2).Visible = True
+                p(3).Visible = True
+                p(4).Visible = True
+                p(5).Visible = True
+                p(6).Visible = True
+
+            'devils
         ElseIf t.Value = 7 Then
-            p(0).Visible = False
-            p(1).Visible = True
-            p(2).Visible = False
-            p(3).Visible = False
-            p(4).Visible = False
-            p(5).Visible = False
-            p(6).Visible = False
+                p(0).Visible = False
+                p(1).Visible = True
+                p(2).Visible = False
+                p(3).Visible = False
+                p(4).Visible = False
+                p(5).Visible = False
+                p(6).Visible = False
         End If
     End Sub
 
@@ -458,17 +454,25 @@ Public Class frmRB4Tier
     'returns a Bitmap based on textbox contents and trackbar positions
     Function generateImage() As Bitmap
 
-        final = My.Resources.blank
+        Dim final As Bitmap = My.Resources.blank
 
         'adds the text
-        Using finalEdit = Graphics.FromImage(final)
-            'draws the song info
-            finalEdit.DrawString(lblTitle.Text, lblTitle.Font, Brushes.White, 320, 17)
-            finalEdit.DrawString(lblAlbum.Text, lblAlbum.Font, Brushes.White, 320, 69)
-            finalEdit.DrawString(lblGenreT.Text, lblGenreT.Font, Brushes.White, 320, 121)
-            finalEdit.DrawString(lblYear.Text, lblYear.Font, Brushes.White, 320, 173)
-        End Using
+        Using finalEdit As Graphics = Graphics.FromImage(final)
 
+            'declaring new fonts to use for this method
+            Dim fontB = New System.Drawing.Font(privateFontsB.Families(0), 32, FontStyle.Bold)
+            Dim font = New System.Drawing.Font(privateFonts.Families(0), 32)
+
+            'draws the song info
+            finalEdit.DrawString(lblTitle.Text, fontB, Brushes.White, 320, 17)
+            finalEdit.DrawString(lblAlbum.Text, font, Brushes.White, 320, 69)
+            finalEdit.DrawString(lblGenreT.Text, font, Brushes.White, 320, 121)
+            finalEdit.DrawString(lblYear.Text, font, Brushes.White, 320, 173)
+
+            'dispose fonts
+            font.Dispose()
+            fontB.Dispose()
+        End Using
 
         'adds the images
         Using finalEdit = Graphics.FromImage(final)
@@ -476,118 +480,71 @@ Public Class frmRB4Tier
             'first lays down the template
             finalEdit.DrawImage(albumArt, 16, 15)
 
-            'places guitar difficulty based on trackbar value
+            '--places guitar difficulty based on trackbar value
+            'no instrument
             If (trkGuitar.Value = 0) Then
                 finalEdit.DrawImage(My.Resources.no_instrument1, 380, 234)
 
+                'devils
             ElseIf (trkGuitar.Value = 7) Then
                 finalEdit.DrawImage(My.Resources.devils1, 383, 238)
 
-            ElseIf (trkGuitar.Value = 2 Or trkGuitar.Value = 3 Or trkGuitar.Value = 4 Or trkGuitar.Value = 5 Or trkGuitar.Value = 6) Then
-                finalEdit.DrawImage(My.Resources.dot2, 383, 239)
-
-                If (trkGuitar.Value = 3 Or trkGuitar.Value = 4 Or trkGuitar.Value = 5 Or trkGuitar.Value = 6) Then
-                    finalEdit.DrawImage(My.Resources.dot2, 423, 239)
-
-                    If (trkGuitar.Value = 4 Or trkGuitar.Value = 5 Or trkGuitar.Value = 6) Then
-                        finalEdit.DrawImage(My.Resources.dot2, 463, 239)
-
-                        If (trkGuitar.Value = 5 Or trkGuitar.Value = 6) Then
-                            finalEdit.DrawImage(My.Resources.dot2, 503, 239)
-
-                            If (trkGuitar.Value = 6) Then
-                                finalEdit.DrawImage(My.Resources.dot2, 543, 239)
-
-                            End If
-                        End If
-                    End If
-                End If
+                'dots
+            ElseIf (trkGuitar.Value > 1) Then
+                For i As Integer = 383 To (383 + (trkGuitar.Value - 2) * 40) Step 40
+                    finalEdit.DrawImage(My.Resources.dot2, i, 239)
+                Next
             End If
 
-            'drums
+            '--places drums difficulty based on trackbar value
+            'no instrument
             If (trkDrums.Value = 0) Then
                 finalEdit.DrawImage(My.Resources.no_instrument1, 662, 234)
 
+                'devils
             ElseIf (trkDrums.Value = 7) Then
                 finalEdit.DrawImage(My.Resources.devils1, 665, 238)
 
-            ElseIf (trkDrums.Value = 2 Or trkDrums.Value = 3 Or trkDrums.Value = 4 Or trkDrums.Value = 5 Or trkDrums.Value = 6) Then
-                finalEdit.DrawImage(My.Resources.dot2, 667, 239)
-
-                If (trkDrums.Value = 3 Or trkDrums.Value = 4 Or trkDrums.Value = 5 Or trkDrums.Value = 6) Then
-                    finalEdit.DrawImage(My.Resources.dot2, 707, 239)
-
-                    If (trkDrums.Value = 4 Or trkDrums.Value = 5 Or trkDrums.Value = 6) Then
-                        finalEdit.DrawImage(My.Resources.dot2, 747, 239)
-
-                        If (trkDrums.Value = 5 Or trkDrums.Value = 6) Then
-                            finalEdit.DrawImage(My.Resources.dot2, 787, 239)
-
-                            If (trkDrums.Value = 6) Then
-                                finalEdit.DrawImage(My.Resources.dot2, 827, 239)
-
-                            End If
-                        End If
-                    End If
-                End If
+                'dots
+            ElseIf (trkDrums.Value > 1) Then
+                For i As Integer = 667 To (667 + (trkDrums.Value - 2) * 40) Step 40
+                    finalEdit.DrawImage(My.Resources.dot2, i, 239)
+                Next
             End If
 
 
-            'vocals
+            '--places vocals difficulty based on trackbar value
+            'no instrument
             If (trkVocals.Value = 0) Then
                 finalEdit.DrawImage(My.Resources.no_instrument1, 938, 234)
+
+                'devils
             ElseIf (trkVocals.Value = 7) Then
                 finalEdit.DrawImage(My.Resources.devils1, 941, 238)
 
-            ElseIf (trkVocals.Value = 2 Or trkVocals.Value = 3 Or trkVocals.Value = 4 Or trkVocals.Value = 5 Or trkVocals.Value = 6) Then
-                finalEdit.DrawImage(My.Resources.dot2, 943, 239)
-
-                If (trkVocals.Value = 3 Or trkVocals.Value = 4 Or trkVocals.Value = 5 Or trkVocals.Value = 6) Then
-                    finalEdit.DrawImage(My.Resources.dot2, 983, 239)
-
-                    If (trkVocals.Value = 4 Or trkVocals.Value = 5 Or trkVocals.Value = 6) Then
-                        finalEdit.DrawImage(My.Resources.dot2, 1023, 239)
-
-                        If (trkVocals.Value = 5 Or trkVocals.Value = 6) Then
-                            finalEdit.DrawImage(My.Resources.dot2, 1063, 239)
-
-                            If (trkVocals.Value = 6) Then
-                                finalEdit.DrawImage(My.Resources.dot2, 1103, 239)
-
-                            End If
-                        End If
-                    End If
-                End If
+                'dots
+            ElseIf (trkVocals.Value > 1) Then
+                For i As Integer = 943 To (943 + (trkVocals.Value - 2) * 40) Step 40
+                    finalEdit.DrawImage(My.Resources.dot2, i, 239)
+                Next
             End If
 
-            'bass
+            '--places bass difficulty based on trackbar value
+            'no instrument
             If (trkBass.Value = 0) Then
                 finalEdit.DrawImage(My.Resources.no_instrument1, 1220, 234)
+
+                'devils
             ElseIf (trkBass.Value = 7) Then
                 finalEdit.DrawImage(My.Resources.devils1, 1223, 238)
 
-            ElseIf (trkBass.Value = 2 Or trkBass.Value = 3 Or trkBass.Value = 4 Or trkBass.Value = 5 Or trkBass.Value = 6) Then
-                finalEdit.DrawImage(My.Resources.dot2, 1227, 239)
-
-                If (trkBass.Value = 3 Or trkBass.Value = 4 Or trkBass.Value = 5 Or trkBass.Value = 6) Then
-                    finalEdit.DrawImage(My.Resources.dot2, 1267, 239)
-
-                    If (trkBass.Value = 4 Or trkBass.Value = 5 Or trkBass.Value = 6) Then
-                        finalEdit.DrawImage(My.Resources.dot2, 1307, 239)
-
-                        If (trkBass.Value = 5 Or trkBass.Value = 6) Then
-                            finalEdit.DrawImage(My.Resources.dot2, 1347, 239)
-
-                            If (trkBass.Value = 6) Then
-                                finalEdit.DrawImage(My.Resources.dot2, 1387, 239)
-
-                            End If
-                        End If
-                    End If
-                End If
+                'dots
+            ElseIf (trkBass.Value > 1) Then
+                For i As Integer = 1227 To (1227 + (trkBass.Value - 2) * 40) Step 40
+                    finalEdit.DrawImage(My.Resources.dot2, i, 239)
+                Next
             End If
         End Using
-
 
         Return final
     End Function
