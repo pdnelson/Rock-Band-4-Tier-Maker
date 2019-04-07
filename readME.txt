@@ -13,7 +13,7 @@
 #                                                                                                                
 # Source code can be found here: https://github.com/pdnelson/Rock-Band-4-Tier-Maker                              
 #                                                                                                                
-# Version 1.0                                                                                                    
+# Version 1.1                                                                                                    
 #                                                                                                                
 # It is essential that, when you unzip the contents of the program, you keep everything in the "RB4 Tier Maker"  
 # folder intact. The reason for this is because these files are accessed by the program to store settings, as    
@@ -72,4 +72,11 @@
 #                                                                                                               
 # -Patrick N. (BetaMaster64)                                                                                    
 #                                                                                                               
+################################################################################################################
+#
+# UPDATES:
+#
+# 7 April 2019:
+#	Fixed the issue where ampersands (&) wouldn't show up correctly in the preview.
+#
 ################################################################################################################
