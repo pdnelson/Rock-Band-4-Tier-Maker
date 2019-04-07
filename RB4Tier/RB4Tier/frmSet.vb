@@ -352,7 +352,7 @@ Public Class frmRB4Tier
 
     'ABOUT
     Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles mnuAbout.Click
-        MessageBox.Show("Rock Band 4 Tier Maker is a free, open source program designed in 2019 by Patrick Nelson (BetaMaster64)." + vbCrLf + vbCrLf + "Version 1.0" + vbCrLf + vbCrLf + "Found a bug? Shoot me an email at supermariokart98@gmail.com!", "About")
+        MessageBox.Show("Rock Band 4 Tier Maker is a free, open source program designed in 2019 by Patrick Nelson (BetaMaster64)." + vbCrLf + vbCrLf + "Version 1.1" + vbCrLf + vbCrLf + "Found a bug? Shoot me an email at supermariokart98@gmail.com!", "About")
     End Sub
 
 
@@ -464,10 +464,10 @@ Public Class frmRB4Tier
             Dim font = New System.Drawing.Font(privateFonts.Families(0), 32)
 
             'draws the song info
-            finalEdit.DrawString(lblTitle.Text, fontB, Brushes.White, 320, 17)
-            finalEdit.DrawString(lblAlbum.Text, font, Brushes.White, 320, 69)
-            finalEdit.DrawString(lblGenreT.Text, font, Brushes.White, 320, 121)
-            finalEdit.DrawString(lblYear.Text, font, Brushes.White, 320, 173)
+            finalEdit.DrawString(txtTitle.Text, fontB, Brushes.White, 320, 17)
+            finalEdit.DrawString(txtArtist.Text, font, Brushes.White, 320, 69)
+            finalEdit.DrawString(drpGenre.Text, font, Brushes.White, 320, 121)
+            finalEdit.DrawString(txtYear.Text, font, Brushes.White, 320, 173)
 
             'dispose fonts
             font.Dispose()

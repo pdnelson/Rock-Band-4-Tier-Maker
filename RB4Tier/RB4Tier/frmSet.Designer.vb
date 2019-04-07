@@ -24,6 +24,7 @@ Partial Class frmRB4Tier
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmRB4Tier))
         Me.grpSongInfo = New System.Windows.Forms.GroupBox()
+        Me.picPreview = New System.Windows.Forms.PictureBox()
         Me.drpGenre = New System.Windows.Forms.ComboBox()
         Me.txtYear = New System.Windows.Forms.TextBox()
         Me.btnArt = New System.Windows.Forms.Button()
@@ -90,11 +91,11 @@ Partial Class frmRB4Tier
         Me.picNoDrums = New System.Windows.Forms.PictureBox()
         Me.picNoVocals = New System.Windows.Forms.PictureBox()
         Me.picNoGuitar = New System.Windows.Forms.PictureBox()
-        Me.picPreview = New System.Windows.Forms.PictureBox()
         Me.picTemplate = New System.Windows.Forms.PictureBox()
         Me.lblBorderTop = New System.Windows.Forms.Label()
         Me.lblBorderBottom = New System.Windows.Forms.Label()
         Me.grpSongInfo.SuspendLayout()
+        CType(Me.picPreview, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpDifficulties.SuspendLayout()
         CType(Me.trkGuitar, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.trkDrums, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -130,7 +131,6 @@ Partial Class frmRB4Tier
         CType(Me.picNoDrums, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picNoVocals, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picNoGuitar, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.picPreview, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picTemplate, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -153,6 +153,16 @@ Partial Class frmRB4Tier
         Me.grpSongInfo.TabIndex = 0
         Me.grpSongInfo.TabStop = False
         Me.grpSongInfo.Text = "General Song Information"
+        '
+        'picPreview
+        '
+        Me.picPreview.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.picPreview.Image = Global.RB4Tier.My.Resources.Resources.artpreview
+        Me.picPreview.Location = New System.Drawing.Point(162, 140)
+        Me.picPreview.Name = "picPreview"
+        Me.picPreview.Size = New System.Drawing.Size(96, 96)
+        Me.picPreview.TabIndex = 7
+        Me.picPreview.TabStop = False
         '
         'drpGenre
         '
@@ -386,6 +396,7 @@ Partial Class frmRB4Tier
         Me.lblTitle.Size = New System.Drawing.Size(39, 17)
         Me.lblTitle.TabIndex = 42
         Me.lblTitle.Text = "[Title]"
+        Me.lblTitle.UseMnemonic = False
         '
         'lblAlbum
         '
@@ -398,6 +409,7 @@ Partial Class frmRB4Tier
         Me.lblAlbum.Size = New System.Drawing.Size(70, 18)
         Me.lblAlbum.TabIndex = 43
         Me.lblAlbum.Text = "[Artist]"
+        Me.lblAlbum.UseMnemonic = False
         '
         'lblGenreT
         '
@@ -410,6 +422,7 @@ Partial Class frmRB4Tier
         Me.lblGenreT.Size = New System.Drawing.Size(72, 18)
         Me.lblGenreT.TabIndex = 44
         Me.lblGenreT.Text = "[Genre]"
+        Me.lblGenreT.UseMnemonic = False
         '
         'lblYear
         '
@@ -422,6 +435,7 @@ Partial Class frmRB4Tier
         Me.lblYear.Size = New System.Drawing.Size(56, 18)
         Me.lblYear.TabIndex = 45
         Me.lblYear.Text = "[Year]"
+        Me.lblYear.UseMnemonic = False
         '
         'mnuCreate
         '
@@ -775,16 +789,6 @@ Partial Class frmRB4Tier
         Me.picNoGuitar.TabIndex = 7
         Me.picNoGuitar.TabStop = False
         '
-        'picPreview
-        '
-        Me.picPreview.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.picPreview.Image = Global.RB4Tier.My.Resources.Resources.artpreview
-        Me.picPreview.Location = New System.Drawing.Point(162, 140)
-        Me.picPreview.Name = "picPreview"
-        Me.picPreview.Size = New System.Drawing.Size(96, 96)
-        Me.picPreview.TabIndex = 7
-        Me.picPreview.TabStop = False
-        '
         'picTemplate
         '
         Me.picTemplate.Image = CType(resources.GetObject("picTemplate.Image"), System.Drawing.Image)
@@ -867,6 +871,7 @@ Partial Class frmRB4Tier
         Me.Text = "Rock Band 4 Tier Maker"
         Me.grpSongInfo.ResumeLayout(False)
         Me.grpSongInfo.PerformLayout()
+        CType(Me.picPreview, System.ComponentModel.ISupportInitialize).EndInit()
         Me.grpDifficulties.ResumeLayout(False)
         Me.grpDifficulties.PerformLayout()
         CType(Me.trkGuitar, System.ComponentModel.ISupportInitialize).EndInit()
@@ -904,7 +909,6 @@ Partial Class frmRB4Tier
         CType(Me.picNoDrums, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.picNoVocals, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.picNoGuitar, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.picPreview, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.picTemplate, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
