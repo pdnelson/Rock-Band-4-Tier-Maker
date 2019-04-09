@@ -154,8 +154,6 @@
     <None Include="Resources\blank.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\realfontbold.ttf" />
-    <EmbeddedResource Include="Resources\realfont.ttf" />
     <None Include="Resources\no instrument.png" />
   </ItemGroup>
   <ItemGroup>
@@ -179,10 +177,7 @@
   <ItemGroup>
     <Content Include="icon2.ico" />
     <None Include="Resources\nopic.png" />
-    <None Include="Resources\gene.jpg" />
     <None Include="Resources\artpreview.png" />
-    <None Include="Resources\blank.bmp" />
-    <None Include="Resources\blank2.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">

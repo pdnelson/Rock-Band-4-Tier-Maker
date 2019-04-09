@@ -36,7 +36,7 @@ Public Class frmRB4Tier
         Dim show As String
         show = My.Computer.FileSystem.ReadAllText("Sys\Settings\view.txt")
         If (show.Equals("hide" + vbCrLf)) Then
-            Me.Size = New Size(589, 329)
+            Me.Size = New Size(789, 329)
             mnuHide.Checked = True
             mnuShow.Checked = False
             lblBorderTop.Visible = False
@@ -136,54 +136,22 @@ Public Class frmRB4Tier
 
     'SONG TITLE TEXTBOX
     Private Sub txtTitle_TextChanged(sender As Object, e As EventArgs) Handles txtTitle.TextChanged
-
-        'if the textbox is empty, it will return to the default text
-        If (txtTitle.Text.Equals("")) Then
-            lblTitle.Text = "[Title]"
-
-            'else, update the label
-        Else
-            lblTitle.Text = txtTitle.Text
-        End If
+        changeText(txtTitle.Text, lblTitle, FontStyle.Bold, "[Title]", privateFontsB.Families(0))
     End Sub
 
     'ARTIST TEXTBOX
     Private Sub txtArtist_TextChanged(sender As Object, e As EventArgs) Handles txtArtist.TextChanged
-
-        'if the textbox is empty, it will return to the default text
-        If (txtArtist.Text.Equals("")) Then
-            lblAlbum.Text = "[Artist]"
-
-            'else, update the label
-        Else
-            lblAlbum.Text = txtArtist.Text
-        End If
+        changeText(txtArtist.Text, lblAlbum, FontStyle.Regular, "[Artist]", privateFonts.Families(0))
     End Sub
 
     'GENRE DROP-DOWN
     Private Sub drpGenre_SelectedIndexChanged(sender As Object, e As EventArgs) Handles drpGenre.SelectedIndexChanged
-
-        'if the textbox is empty, it will use this unused text
-        If (drpGenre.Text.Equals("")) Then
-            lblGenreT.Text = "[Genre]"
-
-            'else, update the label
-        Else
-            lblGenreT.Text = drpGenre.Text
-        End If
+        changeText(drpGenre.Text, lblGenreT, FontStyle.Regular, "[Genre]", privateFonts.Families(0))
     End Sub
 
     'YEAR TEXTBOX
     Private Sub txtYear_TextChanged(sender As Object, e As EventArgs) Handles txtYear.TextChanged
-
-        'if the textbox is empty, it will return to the default text
-        If (txtYear.Text.Equals("")) Then
-            lblYear.Text = "[Year]"
-
-            'else, update the label
-        Else
-            lblYear.Text = txtYear.Text
-        End If
+        changeText(txtYear.Text, lblYear, FontStyle.Regular, "[Year]", privateFonts.Families(0))
     End Sub
 
     'SEARCH FOR ALBUM ART
@@ -279,41 +247,20 @@ Public Class frmRB4Tier
         trkVocals.Value = 0
         trkBass.Value = 0
 
-        'set guitar back to "no instrument"
-        picNoGuitar.Visible = True
-        picGuitarDevil.Visible = False
-        picGuitar5.Visible = False
-        picGuitar4.Visible = False
-        picGuitar3.Visible = False
-        picGuitar2.Visible = False
-        picGuitar1.Visible = False
-
-        'set drums back to "no instrument"
-        picNoDrums.Visible = True
-        picDrumDevil.Visible = False
-        picDrum5.Visible = False
-        picDrum4.Visible = False
-        picDrum3.Visible = False
-        picDrum2.Visible = False
-        picDrum1.Visible = False
-
-        'set vocals back to "no instrument"
-        picNoVocals.Visible = True
-        picVocDevil.Visible = False
-        picVoc5.Visible = False
-        picVoc4.Visible = False
-        picVoc3.Visible = False
-        picVoc2.Visible = False
-        picVoc1.Visible = False
-
-        'set bass back to "no instrument"
-        picNoBass.Visible = True
-        picBassDevil.Visible = False
-        picBass5.Visible = False
-        picBass4.Visible = False
-        picBass3.Visible = False
-        picBass2.Visible = False
-        picBass1.Visible = False
+        'Set all instrument displays back to "no instrument"
+        For i As Integer = 0 To 6 Step 1
+            If (i = 0) Then
+                bass(i).Visible = True
+                drum(i).Visible = True
+                vocal(i).Visible = True
+                guitar(i).Visible = True
+            Else
+                bass(i).Visible = False
+                drum(i).Visible = False
+                vocal(i).Visible = False
+                guitar(i).Visible = False
+            End If
+        Next
 
         'clear images
         picCover.Visible = False
@@ -331,7 +278,7 @@ Public Class frmRB4Tier
         lblBorderTop.Visible = False
         mnuHide.Checked = True
         mnuShow.Checked = False
-        Me.Size = New Size(589, 329)
+        Me.Size = New Size(789, 329)
 
         'saves the user's setting
         saveToFile("Sys\Settings\view.txt", "hide")
@@ -352,14 +299,14 @@ Public Class frmRB4Tier
 
     'ABOUT
     Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles mnuAbout.Click
-        MessageBox.Show("Rock Band 4 Tier Maker is a free, open source program designed in 2019 by Patrick Nelson (BetaMaster64)." + vbCrLf + vbCrLf + "Version 1.1" + vbCrLf + vbCrLf + "Found a bug? Shoot me an email at supermariokart98@gmail.com!", "About")
+        MessageBox.Show("Rock Band 4 Tier Maker is a free, open source program designed in 2019 by Patrick Nelson (BetaMaster64)." + vbCrLf + vbCrLf + "Version 1.2" + vbCrLf + vbCrLf + "Found a bug? Shoot me an email at supermariokart98@gmail.com!", "About")
     End Sub
 
 
     '----other functions----
 
     'SAVE SETTINGS
-    'takes in parameters "path" and "condition"
+    'takes in parameters String path and String condition
     'path will be the directory/file name you are saving to
     'condition will be the setting that you are saving
     Private Sub saveToFile(path As String, condition As String)
@@ -373,9 +320,9 @@ Public Class frmRB4Tier
     End Sub
 
     'CHANGE DIFFICULTY PREVIEW UPDATE
-    'takes in parameters "TrackBar" t and "PictureBox()" p (array)
-    'TrackBar t is the trackbar that is being used
-    'PictureBox() p is an array of preview images corresponding to the passed trackbar
+    'takes in parameters TrackBar t and PictureBox() p (array)
+    't is the trackbar that is being used
+    'p is an array of preview images corresponding to the passed trackbar
     Private Sub changeDiff(t As TrackBar, p As PictureBox())
 
         'no instrument
@@ -450,6 +397,62 @@ Public Class frmRB4Tier
         End If
     End Sub
 
+    'UPDATE SONG INFO LABELS
+    'takes in parameters String t, Label l, FontStyle f, String defaultText, and FontFamily family 
+    'l is the label you are updating, and t is the textbox contents that you are pulling from
+    'f is the font style, which is only different if between Title and the rest of the fields
+    'defaultText is the text that is present when t is empty
+    Private Sub changeText(t As String, l As Label, f As FontStyle, defaultText As String, family As FontFamily)
+
+        'determines if text is being removed or added
+        Dim textAdded As Boolean = False
+        If (t.Length() < l.Text.Length()) Then
+            textAdded = False
+        Else
+            textAdded = True
+        End If
+
+        'if the textbox is empty, it will return to the default text
+        If (t.Equals("")) Then
+            l.Text = defaultText
+
+            'sets the font size back to what it should be
+            Using font As Font = New System.Drawing.Font(family, 32, f)
+                l.Font = font
+            End Using
+
+            'else, update the label
+        Else
+            l.Text = t
+
+            'if there is too much text, make the font smaller so that it fits
+            While (l.Width() > (My.Resources.blank.Width - 330) And textAdded = True)
+                Using font As Font = New System.Drawing.Font(family, (l.Font.Size - 1), f)
+                    l.Font = font
+                End Using
+            End While
+
+            'while the user is backspacing, makes the font larger to fit the maximum width
+            While (l.Width() < (My.Resources.blank.Width - 330) And l.Font.Size < 32 And textAdded = False)
+                Using font As Font = New System.Drawing.Font(family, (l.Font.Size + 1), f)
+                    l.Font = font
+                End Using
+            End While
+
+            'final buffer for backspacing
+            If (l.Width() > (My.Resources.blank.Width - 330) And textAdded = False) Then
+                Using font As Font = New System.Drawing.Font(family, (l.Font.Size - 1), f)
+                    l.Font = font
+                End Using
+            End If
+
+        End If
+
+        lblAlbum.Location = New Point(lblAlbum.Location.X, lblTitle.Location.Y + lblTitle.Height + 6)
+        lblGenreT.Location = New Point(lblGenreT.Location.X, lblAlbum.Location.Y + lblAlbum.Height + 9)
+        lblYear.Location = New Point(lblYear.Location.X, lblGenreT.Location.Y + lblGenreT.Height + 11)
+    End Sub
+
     'GENERATE IMAGE
     'returns a Bitmap based on textbox contents and trackbar positions
     Function generateImage() As Bitmap
@@ -459,19 +462,25 @@ Public Class frmRB4Tier
         'adds the text
         Using finalEdit As Graphics = Graphics.FromImage(final)
 
-            'declaring new fonts to use for this method
-            Dim fontB = New System.Drawing.Font(privateFontsB.Families(0), 32, FontStyle.Bold)
-            Dim font = New System.Drawing.Font(privateFonts.Families(0), 32)
+            'draws each of the song info lines with the font size used in the preview
+            Using title As Font = New System.Drawing.Font(privateFontsB.Families(0), lblTitle.Font.Size, FontStyle.Bold)
+                finalEdit.DrawString(lblTitle.Text, title, Brushes.White, 320, 17)
+            End Using
 
-            'draws the song info
-            finalEdit.DrawString(txtTitle.Text, fontB, Brushes.White, 320, 17)
-            finalEdit.DrawString(txtArtist.Text, font, Brushes.White, 320, 69)
-            finalEdit.DrawString(drpGenre.Text, font, Brushes.White, 320, 121)
-            finalEdit.DrawString(txtYear.Text, font, Brushes.White, 320, 173)
+            Using artist As Font = New System.Drawing.Font(privateFonts.Families(0), lblAlbum.Font.Size, FontStyle.Regular)
+                finalEdit.DrawString(lblAlbum.Text, artist, Brushes.White, 320, (17 + lblTitle.Height + 6))
+            End Using
+
+            Using genre As Font = New System.Drawing.Font(privateFonts.Families(0), lblGenreT.Font.Size, FontStyle.Regular)
+                finalEdit.DrawString(lblGenreT.Text, genre, Brushes.White, 320, (17 + lblTitle.Height + 6 + lblAlbum.Height + 9))
+            End Using
+
+            Using year As Font = New System.Drawing.Font(privateFonts.Families(0), lblYear.Font.Size, FontStyle.Regular)
+                finalEdit.DrawString(lblYear.Text, year, Brushes.White, 320, (17 + lblTitle.Height + 6 + lblAlbum.Height + 9 + lblGenreT.Height + 11))
+            End Using
 
             'dispose fonts
-            font.Dispose()
-            fontB.Dispose()
+            Font.Dispose()
         End Using
 
         'adds the images

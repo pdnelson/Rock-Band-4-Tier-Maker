@@ -62,6 +62,8 @@ Partial Class frmRB4Tier
         Me.mnuView = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuHide = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuShow = New System.Windows.Forms.ToolStripMenuItem()
+        Me.lblBorderTop = New System.Windows.Forms.Label()
+        Me.lblBorderBottom = New System.Windows.Forms.Label()
         Me.picCover = New System.Windows.Forms.PictureBox()
         Me.picBassDevil = New System.Windows.Forms.PictureBox()
         Me.picBass4 = New System.Windows.Forms.PictureBox()
@@ -92,8 +94,6 @@ Partial Class frmRB4Tier
         Me.picNoVocals = New System.Windows.Forms.PictureBox()
         Me.picNoGuitar = New System.Windows.Forms.PictureBox()
         Me.picTemplate = New System.Windows.Forms.PictureBox()
-        Me.lblBorderTop = New System.Windows.Forms.Label()
-        Me.lblBorderBottom = New System.Windows.Forms.Label()
         Me.grpSongInfo.SuspendLayout()
         CType(Me.picPreview, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpDifficulties.SuspendLayout()
@@ -149,7 +149,7 @@ Partial Class frmRB4Tier
         Me.grpSongInfo.Controls.Add(Me.lblSName)
         Me.grpSongInfo.Location = New System.Drawing.Point(16, 48)
         Me.grpSongInfo.Name = "grpSongInfo"
-        Me.grpSongInfo.Size = New System.Drawing.Size(272, 240)
+        Me.grpSongInfo.Size = New System.Drawing.Size(466, 240)
         Me.grpSongInfo.TabIndex = 0
         Me.grpSongInfo.TabStop = False
         Me.grpSongInfo.Text = "General Song Information"
@@ -158,7 +158,7 @@ Partial Class frmRB4Tier
         '
         Me.picPreview.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.picPreview.Image = Global.RB4Tier.My.Resources.Resources.artpreview
-        Me.picPreview.Location = New System.Drawing.Point(162, 140)
+        Me.picPreview.Location = New System.Drawing.Point(356, 138)
         Me.picPreview.Name = "picPreview"
         Me.picPreview.Size = New System.Drawing.Size(96, 96)
         Me.picPreview.TabIndex = 7
@@ -173,22 +173,23 @@ Partial Class frmRB4Tier
         Me.drpGenre.Items.AddRange(New Object() {"Alternative", "Blues", "Classic Rock", "Classical", "Country", "Emo", "Fusion", "Glam", "Grunge", "Hip Hop/Rap", "Indie Rock", "Inspirational", "J-Rock", "Jazz", "Latin", "Metal", "New Wave", "Novelty", "Nu Metal", "Other", "Pop/Dance/Electronic", "Pop/Rock", "Progressive", "Punk", "R&B/Soul/Funk", "Reggae/Ska", "Rock", "Southern Rock", "Urban", "World"})
         Me.drpGenre.Location = New System.Drawing.Point(80, 80)
         Me.drpGenre.Name = "drpGenre"
-        Me.drpGenre.Size = New System.Drawing.Size(176, 21)
+        Me.drpGenre.Size = New System.Drawing.Size(372, 21)
         Me.drpGenre.Sorted = True
         Me.drpGenre.TabIndex = 3
         '
         'txtYear
         '
         Me.txtYear.Location = New System.Drawing.Point(80, 114)
+        Me.txtYear.MaxLength = 175
         Me.txtYear.Name = "txtYear"
-        Me.txtYear.Size = New System.Drawing.Size(176, 20)
+        Me.txtYear.Size = New System.Drawing.Size(372, 20)
         Me.txtYear.TabIndex = 4
         '
         'btnArt
         '
         Me.btnArt.Location = New System.Drawing.Point(16, 144)
         Me.btnArt.Name = "btnArt"
-        Me.btnArt.Size = New System.Drawing.Size(136, 22)
+        Me.btnArt.Size = New System.Drawing.Size(326, 22)
         Me.btnArt.TabIndex = 5
         Me.btnArt.Text = "Import Album Art"
         Me.btnArt.UseVisualStyleBackColor = True
@@ -214,15 +215,17 @@ Partial Class frmRB4Tier
         'txtArtist
         '
         Me.txtArtist.Location = New System.Drawing.Point(80, 48)
+        Me.txtArtist.MaxLength = 175
         Me.txtArtist.Name = "txtArtist"
-        Me.txtArtist.Size = New System.Drawing.Size(176, 20)
+        Me.txtArtist.Size = New System.Drawing.Size(372, 20)
         Me.txtArtist.TabIndex = 2
         '
         'txtTitle
         '
         Me.txtTitle.Location = New System.Drawing.Point(80, 16)
+        Me.txtTitle.MaxLength = 175
         Me.txtTitle.Name = "txtTitle"
-        Me.txtTitle.Size = New System.Drawing.Size(176, 20)
+        Me.txtTitle.Size = New System.Drawing.Size(372, 20)
         Me.txtTitle.TabIndex = 1
         '
         'lblAName
@@ -258,7 +261,7 @@ Partial Class frmRB4Tier
         Me.grpDifficulties.Controls.Add(Me.trkDrums)
         Me.grpDifficulties.Controls.Add(Me.trkVocals)
         Me.grpDifficulties.Controls.Add(Me.trkBass)
-        Me.grpDifficulties.Location = New System.Drawing.Point(294, 48)
+        Me.grpDifficulties.Location = New System.Drawing.Point(494, 48)
         Me.grpDifficulties.Name = "grpDifficulties"
         Me.grpDifficulties.Size = New System.Drawing.Size(272, 240)
         Me.grpDifficulties.TabIndex = 2
@@ -502,6 +505,26 @@ Partial Class frmRB4Tier
         Me.mnuShow.Name = "mnuShow"
         Me.mnuShow.Size = New System.Drawing.Size(141, 22)
         Me.mnuShow.Text = "&Show Preview"
+        '
+        'lblBorderTop
+        '
+        Me.lblBorderTop.AutoSize = True
+        Me.lblBorderTop.BackColor = System.Drawing.Color.Black
+        Me.lblBorderTop.Location = New System.Drawing.Point(0, 292)
+        Me.lblBorderTop.Name = "lblBorderTop"
+        Me.lblBorderTop.Size = New System.Drawing.Size(1807, 26)
+        Me.lblBorderTop.TabIndex = 48
+        Me.lblBorderTop.Text = resources.GetString("lblBorderTop.Text")
+        '
+        'lblBorderBottom
+        '
+        Me.lblBorderBottom.AutoSize = True
+        Me.lblBorderBottom.BackColor = System.Drawing.Color.Black
+        Me.lblBorderBottom.Location = New System.Drawing.Point(-172, 612)
+        Me.lblBorderBottom.Name = "lblBorderBottom"
+        Me.lblBorderBottom.Size = New System.Drawing.Size(1807, 26)
+        Me.lblBorderBottom.TabIndex = 49
+        Me.lblBorderBottom.Text = resources.GetString("lblBorderBottom.Text")
         '
         'picCover
         '
@@ -797,26 +820,6 @@ Partial Class frmRB4Tier
         Me.picTemplate.Size = New System.Drawing.Size(1432, 313)
         Me.picTemplate.TabIndex = 47
         Me.picTemplate.TabStop = False
-        '
-        'lblBorderTop
-        '
-        Me.lblBorderTop.AutoSize = True
-        Me.lblBorderTop.BackColor = System.Drawing.Color.Black
-        Me.lblBorderTop.Location = New System.Drawing.Point(0, 292)
-        Me.lblBorderTop.Name = "lblBorderTop"
-        Me.lblBorderTop.Size = New System.Drawing.Size(1807, 26)
-        Me.lblBorderTop.TabIndex = 48
-        Me.lblBorderTop.Text = resources.GetString("lblBorderTop.Text")
-        '
-        'lblBorderBottom
-        '
-        Me.lblBorderBottom.AutoSize = True
-        Me.lblBorderBottom.BackColor = System.Drawing.Color.Black
-        Me.lblBorderBottom.Location = New System.Drawing.Point(-172, 612)
-        Me.lblBorderBottom.Name = "lblBorderBottom"
-        Me.lblBorderBottom.Size = New System.Drawing.Size(1807, 26)
-        Me.lblBorderBottom.TabIndex = 49
-        Me.lblBorderBottom.Text = resources.GetString("lblBorderBottom.Text")
         '
         'frmRB4Tier
         '

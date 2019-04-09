@@ -4,7 +4,7 @@
   <description asmv2:iconFile="icon2.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="Rock Band 4 Tier Maker" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <assemblyIdentity name="Rock Band 4 Tier Maker" version="1.2.0.0" language="neutral" processorArchitecture="msil" />
     <commandLine file="Rock Band 4 Tier Maker.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Rock Band 4 Tier Maker.exe" size="374696">
-      <assemblyIdentity name="Rock Band 4 Tier Maker" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Rock Band 4 Tier Maker.exe" size="190376">
+      <assemblyIdentity name="Rock Band 4 Tier Maker" version="1.2.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>ZySOSvypFM6RAGKNdLZvWMrNcUYitTqsS5XfCqES8QA=</dsig:DigestValue>
+        <dsig:DigestValue>nPnKW/lStBKAgK2zOXBPxzVTs9h9QzylpcYoTRNMkic=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
