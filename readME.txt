@@ -5,7 +5,7 @@
 # Hello, and thank you for downloading the Rock Band 4 Tier Maker!                                               
 #                                                                                                                
 # This project was done by request. It was written in Visual Basic using Microsoft Visual Studio 2013,           
-# and took about a week to finish (if you don't include the one-year gap of inactivity).                         
+# and development progressed during my occasional free time across a few weeks.                         
 #                                                                                                                
 # I made this open source, so if you want to dig into the code out of curiosity, or to use it for your own       
 # project(s), you're welcome to do that. Detailed comments are used throughout the program to make it easy       
@@ -13,7 +13,7 @@
 #                                                                                                                
 # Source code can be found here: https://github.com/pdnelson/Rock-Band-4-Tier-Maker                              
 #                                                                                                                
-# Version 1.1                                                                                                    
+# Version 1.2                                                                                                    
 #                                                                                                                
 # It is essential that, when you unzip the contents of the program, you keep everything in the "RB4 Tier Maker"  
 # folder intact. The reason for this is because these files are accessed by the program to store settings, as    
@@ -56,7 +56,7 @@
 #                                                                                                               
 # 	-Hide Preview                                                                                               
 # 		-Hides the preview, and makes the window much smaller and not take up your entire screen.          
-# 		***IMPORTANT: If your screen resolution's width is less than 1440, the preview will not fit        
+# 		***IMPORTANT: If your screen resolution's width is less than 1440px, the preview will not fit        
 # 			and it will be hidden by default, with the "Show Preview" option disabled. The reason          
 # 			for this is because Windows Forms cannot create a window size larger than your resolution,     
 # 			so there would be visual errors in the preview.                                                
@@ -77,6 +77,12 @@
 # UPDATES:
 #
 # 7 April 2019:
-#	Fixed the issue where ampersands (&) wouldn't show up correctly in the preview.
+#	-Fixed the issue where ampersands (&) wouldn't show up correctly in the preview.
+#
+# 9 April 2019:
+#	-Made the "blank" dots darker, so it's easier to tell they're blank on a smaller screen
+#	-Font size is now dynamic, updates automatically, and doesn't run off the edge of the screen
+#	-Text location is now dynamic, updates automatically, and closes awkward gaps when the text size decreases
+#	-Text boxes now have a character limit of 175
 #
 ################################################################################################################
