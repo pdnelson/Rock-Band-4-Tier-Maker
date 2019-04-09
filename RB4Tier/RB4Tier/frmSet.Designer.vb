@@ -814,7 +814,7 @@ Partial Class frmRB4Tier
         '
         'picTemplate
         '
-        Me.picTemplate.Image = CType(resources.GetObject("picTemplate.Image"), System.Drawing.Image)
+        Me.picTemplate.Image = Global.RB4Tier.My.Resources.Resources.blank
         Me.picTemplate.Location = New System.Drawing.Point(0, 304)
         Me.picTemplate.Name = "picTemplate"
         Me.picTemplate.Size = New System.Drawing.Size(1432, 313)

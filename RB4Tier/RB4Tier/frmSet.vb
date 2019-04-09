@@ -14,6 +14,7 @@ Public Class frmRB4Tier
     Dim albumArt As Bitmap
     Dim privateFonts As New PrivateFontCollection()
     Dim privateFontsB As New PrivateFontCollection()
+    Dim fontSize(3) As Integer
 
     'FORM LOAD
     Private Sub frmRB4Tier_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -478,9 +479,6 @@ Public Class frmRB4Tier
             Using year As Font = New System.Drawing.Font(privateFonts.Families(0), lblYear.Font.Size, FontStyle.Regular)
                 finalEdit.DrawString(lblYear.Text, year, Brushes.White, 320, (17 + lblTitle.Height + 6 + lblAlbum.Height + 9 + lblGenreT.Height + 11))
             End Using
-
-            'dispose fonts
-            Font.Dispose()
         End Using
 
         'adds the images

@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Rock Band 4 Tier Maker.exe" size="190376">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Rock Band 4 Tier Maker.exe" size="165800">
       <assemblyIdentity name="Rock Band 4 Tier Maker" version="1.2.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>nPnKW/lStBKAgK2zOXBPxzVTs9h9QzylpcYoTRNMkic=</dsig:DigestValue>
+        <dsig:DigestValue>HAI3t6ekDJMCJX+P+E2SZEUNjMmtSH7D3mtNYQ6KT74=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
