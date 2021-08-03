@@ -1,6 +1,6 @@
 ## Introduction
 
-Hello, and thank you for downloading the Rock Band 4 Tier Maker!
+Hello, and thank you for downloading the Rock Band 4 Tier Maker! This is a program that can be used to create Rock Band 4 tiers and export them to an image.
 
 This project was done by request. It was written in Visual Basic using Microsoft Visual Studio 2013,
 and development progressed during my occasional free time across a few weeks.
