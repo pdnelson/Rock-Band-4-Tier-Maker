@@ -90,7 +90,7 @@ Public Class frmRB4Tier
 
     'GUITAR TRACKBAR DRAG
     Private Sub trkGuitar_Scroll(sender As Object, e As EventArgs) Handles trkGuitar.Scroll
-        changeDiff(trkGuitar, guitar)
+        ChangeDifficulty(trkGuitar.Value, guitar)
     End Sub
 
     'GUITAR TRACKBAR CLICK
@@ -101,12 +101,12 @@ Public Class frmRB4Tier
         trkGuitar.Value = Convert.ToInt32(dblValue)
 
         'updates the preview
-        changeDiff(trkGuitar, guitar)
+        ChangeDifficulty(trkGuitar.Value, guitar)
     End Sub
 
     'DRUMS TRACKBAR DRAG
     Private Sub trkDrums_Scroll(sender As Object, e As EventArgs) Handles trkDrums.Scroll
-        changeDiff(trkDrums, drum)
+        ChangeDifficulty(trkDrums.Value, drum)
     End Sub
 
     'DRUMS TRACKBAR CLICK
@@ -117,12 +117,12 @@ Public Class frmRB4Tier
         trkDrums.Value = Convert.ToInt32(dblValue)
 
         'updates the preview
-        changeDiff(trkDrums, drum)
+        ChangeDifficulty(trkDrums.Value, drum)
     End Sub
 
     'VOCAL TRACKBAR DRAG
     Private Sub trkVocals_Scroll(sender As Object, e As EventArgs) Handles trkVocals.Scroll
-        changeDiff(trkVocals, vocal)
+        ChangeDifficulty(trkVocals.Value, vocal)
     End Sub
 
     'VOCAL TRACKBAR CLICK
@@ -133,12 +133,12 @@ Public Class frmRB4Tier
         trkVocals.Value = Convert.ToInt32(dblValue)
 
         'updates the preview
-        changeDiff(trkVocals, vocal)
+        ChangeDifficulty(trkVocals.Value, vocal)
     End Sub
 
     'BASS TRACKBAR DRAG
     Private Sub trkBass_Scroll(sender As Object, e As EventArgs) Handles trkBass.Scroll
-        changeDiff(trkBass, bass)
+        ChangeDifficulty(trkBass.Value, bass)
     End Sub
 
     'BASS TRACKBAR CLICK
@@ -149,7 +149,7 @@ Public Class frmRB4Tier
         trkBass.Value = Convert.ToInt32(dblValue)
 
         'updates the preview
-        changeDiff(trkBass, bass)
+        ChangeDifficulty(trkBass.Value, bass)
     End Sub
 
 
@@ -157,22 +157,22 @@ Public Class frmRB4Tier
 
     'SONG TITLE TEXTBOX
     Private Sub txtTitle_TextChanged(sender As Object, e As EventArgs) Handles txtTitle.TextChanged
-        changeText(txtTitle.Text, lblTitle, FontStyle.Bold, "[Title]")
+        ChangeText(txtTitle.Text, lblTitle, "[Title]")
     End Sub
 
     'ARTIST TEXTBOX
     Private Sub txtArtist_TextChanged(sender As Object, e As EventArgs) Handles txtArtist.TextChanged
-        changeText(txtArtist.Text, lblAlbum, FontStyle.Regular, "[Artist]")
+        ChangeText(txtArtist.Text, lblAlbum, "[Artist]")
     End Sub
 
     'GENRE DROP-DOWN
     Private Sub drpGenre_SelectedIndexChanged(sender As Object, e As EventArgs) Handles drpGenre.SelectedIndexChanged
-        changeText(drpGenre.Text, lblGenreT, FontStyle.Regular, "[Genre]")
+        ChangeText(drpGenre.Text, lblGenreT, "[Genre]")
     End Sub
 
     'YEAR TEXTBOX
     Private Sub txtYear_TextChanged(sender As Object, e As EventArgs) Handles txtYear.TextChanged
-        changeText(txtYear.Text, lblYear, FontStyle.Regular, "[Year]")
+        ChangeText(txtYear.Text, lblYear, "[Year]")
     End Sub
 
     'SEARCH FOR ALBUM ART
@@ -231,7 +231,7 @@ Public Class frmRB4Tier
 
         'saves the image
         If fd.ShowDialog() = DialogResult.OK Then
-            Dim saveImage As New Bitmap(generateImage())
+            Dim saveImage As New Bitmap(GenerateImage())
             strFileName = fd.FileName
             saveImage.Save(strFileName, Imaging.ImageFormat.Png)
 
@@ -245,9 +245,9 @@ Public Class frmRB4Tier
     Private Sub CopyToClipboardToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles mnuCopy.Click
 
         'temporary image variable
-        Dim saveImage As New Bitmap(generateImage())
+        Dim saveImage As New Bitmap(GenerateImage())
 
-        'sets clipboard contents to the generateImage() output
+        'sets clipboard contents to the GenerateImage() output
         My.Computer.Clipboard.SetImage(saveImage)
 
         'dispose the image so it doesn't hog memory
@@ -326,106 +326,110 @@ Public Class frmRB4Tier
 
     '----other functions----
 
-    'SAVE SETTINGS
-    'takes in parameters String path and String condition
-    'path will be the directory/file name you are saving to
-    'condition will be the setting that you are saving
-    Private Sub saveToFile(path As String, condition As String)
+    ''' <summary>
+    ''' Saves data to a file. This is used for saving the user's settings.
+    ''' </summary>
+    ''' <param name="path">The path to save to.</param>
+    ''' <param name="data">The data being saved to the file.</param>
+    Private Sub SaveToFile(path As String, data As String)
 
         If CanSaveSettings Then
             'opens new StreamWriter, setting append to False
             Dim file As StreamWriter = My.Computer.FileSystem.OpenTextFileWriter(path, False)
 
             'write file
-            file.WriteLine(condition)
+            file.WriteLine(data)
             file.Close()
         End If
     End Sub
 
-    'CHANGE DIFFICULTY PREVIEW UPDATE
-    'takes in parameters TrackBar t and PictureBox() p (array)
-    't is the trackbar that is being used
-    'p is an array of preview images corresponding to the passed trackbar
-    Private Sub changeDiff(t As TrackBar, p As PictureBox())
+    ''' <summary>
+    ''' Changes the difficulty trackbars.
+    ''' </summary>
+    ''' <param name="difficulty">Difficulty value from 0 to 7.</param>
+    ''' <param name="p">Images corresponding to the trackbar.</param>
+    Private Sub ChangeDifficulty(difficulty As Integer, p As PictureBox())
 
         'no instrument
-        If t.Value = 0 Then
+        If difficulty = 0 Then
             p(0).Visible = True
             For i As Integer = 1 To 6
                 p(i).Visible = False
             Next
 
             'easy peasy
-        ElseIf t.Value = 1 Then
+        ElseIf difficulty = 1 Then
             For i As Integer = 0 To 6
                 p(i).Visible = False
             Next
 
             '1 dot
-        ElseIf t.Value = 2 Then
+        ElseIf difficulty = 2 Then
             p(6).Visible = True
             For i As Integer = 0 To 5
                 p(i).Visible = False
             Next
 
             '2 dots
-        ElseIf t.Value = 3 Then
-                p(0).Visible = False
-                p(1).Visible = False
-                p(2).Visible = False
-                p(3).Visible = False
-                p(4).Visible = False
-                p(5).Visible = True
-                p(6).Visible = True
+        ElseIf difficulty = 3 Then
+            p(0).Visible = False
+            p(1).Visible = False
+            p(2).Visible = False
+            p(3).Visible = False
+            p(4).Visible = False
+            p(5).Visible = True
+            p(6).Visible = True
 
             '3 dots
-        ElseIf t.Value = 4 Then
-                p(0).Visible = False
-                p(1).Visible = False
-                p(2).Visible = False
-                p(3).Visible = False
-                p(4).Visible = True
-                p(5).Visible = True
-                p(6).Visible = True
+        ElseIf difficulty = 4 Then
+            p(0).Visible = False
+            p(1).Visible = False
+            p(2).Visible = False
+            p(3).Visible = False
+            p(4).Visible = True
+            p(5).Visible = True
+            p(6).Visible = True
 
             '4 dots
-        ElseIf t.Value = 5 Then
-                p(0).Visible = False
-                p(1).Visible = False
-                p(2).Visible = False
-                p(3).Visible = True
-                p(4).Visible = True
-                p(5).Visible = True
-                p(6).Visible = True
+        ElseIf difficulty = 5 Then
+            p(0).Visible = False
+            p(1).Visible = False
+            p(2).Visible = False
+            p(3).Visible = True
+            p(4).Visible = True
+            p(5).Visible = True
+            p(6).Visible = True
 
             '5 dots
-        ElseIf t.Value = 6 Then
-                p(0).Visible = False
-                p(1).Visible = False
-                p(2).Visible = True
-                p(3).Visible = True
-                p(4).Visible = True
-                p(5).Visible = True
-                p(6).Visible = True
+        ElseIf difficulty = 6 Then
+            p(0).Visible = False
+            p(1).Visible = False
+            p(2).Visible = True
+            p(3).Visible = True
+            p(4).Visible = True
+            p(5).Visible = True
+            p(6).Visible = True
 
             'devils
-        ElseIf t.Value = 7 Then
-                p(0).Visible = False
-                p(1).Visible = True
-                p(2).Visible = False
-                p(3).Visible = False
-                p(4).Visible = False
-                p(5).Visible = False
-                p(6).Visible = False
+        ElseIf difficulty = 7 Then
+            p(0).Visible = False
+            p(1).Visible = True
+            p(2).Visible = False
+            p(3).Visible = False
+            p(4).Visible = False
+            p(5).Visible = False
+            p(6).Visible = False
         End If
     End Sub
 
-    'UPDATE SONG INFO LABELS
-    'takes in parameters String t, Label l, FontStyle f, String defaultText, and FontFamily family 
-    'l is the label you are updating, and t is the textbox contents that you are pulling from
-    'f is the font style, which is only different if between Title and the rest of the fields
-    'defaultText is the text that is present when t is empty
-    Private Sub changeText(newText As String, label As Label, fontStyle As FontStyle, defaultText As String)
+    ''' <summary>
+    ''' Compares specified text against a specified label's text, and updates the label
+    ''' accordingly.
+    ''' </summary>
+    ''' <param name="newText">The new text that the user just typed.</param>
+    ''' <param name="label">The label that should be modified.</param>
+    ''' <param name="defaultText"></param>
+    Private Sub ChangeText(newText As String, label As Label, defaultText As String)
 
         'determines if text is being removed or added
         Dim textAdded As Boolean = False
@@ -440,7 +444,7 @@ Public Class frmRB4Tier
             label.Text = defaultText
 
             'sets the font size back to what it should be
-            Using font As Font = New Font(label.Font.FontFamily, DefaultFontSize, fontStyle)
+            Using font As Font = New Font(label.Font.FontFamily, DefaultFontSize, label.Font.Style)
                 label.Font = font
             End Using
 
@@ -450,24 +454,24 @@ Public Class frmRB4Tier
 
             'if there is too much text, make the font smaller so that it fits
             While (label.Width() > (My.Resources.blank.Width - 330) And textAdded = True)
-                Using font As Font = New Font(label.Font.FontFamily, (label.Font.Size - 1), fontStyle)
+                Using font As Font = New Font(label.Font.FontFamily, (label.Font.Size - 1), label.Font.Style)
                     label.Font = font
                 End Using
             End While
 
             'while the user is backspacing, makes the font larger to fit the maximum width
             While (label.Width() < (My.Resources.blank.Width - 330) And label.Font.Size < DefaultFontSize And textAdded = False)
-                Using font As Font = New Font(label.Font.FontFamily, (label.Font.Size + 1), fontStyle)
+                Using font As Font = New Font(label.Font.FontFamily, (label.Font.Size + 1), label.Font.Style)
                     label.Font = font
                 End Using
             End While
 
             'final buffer for backspacing
-            If (label.Width() > (My.Resources.blank.Width - 330) And textAdded = False) Then
-                Using font As Font = New Font(label.Font.FontFamily, (label.Font.Size - 1), fontStyle)
+            While label.Width() > (My.Resources.blank.Width - 330) And textAdded = False
+                Using font As Font = New Font(label.Font.FontFamily, label.Font.Size - 1, label.Font.Style)
                     label.Font = font
                 End Using
-            End If
+            End While
 
         End If
 
@@ -476,9 +480,11 @@ Public Class frmRB4Tier
         lblYear.Location = New Point(lblYear.Location.X, lblGenreT.Location.Y + lblGenreT.Height + 11)
     End Sub
 
-    'GENERATE IMAGE
-    'returns a Bitmap based on textbox contents and trackbar positions
-    Function generateImage() As Bitmap
+    ''' <summary>
+    ''' Generates an image that the user will be able to copy or save.
+    ''' </summary>
+    ''' <returns>Bitmap image.</returns>
+    Function GenerateImage() As Bitmap
 
         Dim final As Bitmap = My.Resources.blank
 
