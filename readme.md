@@ -56,4 +56,4 @@ here, but a quick Google search should be able to be of assistance.
 - Warning appears if the "Sys" directory cannot be found
 - Warning appears if the fonts cannot be found (but allows the user to continue using the program)
 - Warning appears if the view settings cannot be found (but allows the user to continue using the program, just doesn't save)
-- Labels now resize properly if the user pastes a bunch of text in a textbos
+- Labels now resize properly if the user pastes a bunch of text in a textbox

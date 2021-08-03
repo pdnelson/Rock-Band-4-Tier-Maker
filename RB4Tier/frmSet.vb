@@ -12,6 +12,8 @@ Public Class frmRB4Tier
     Dim drum(6) As PictureBox
     Dim albumArt As Bitmap
     Dim fontSize(3) As Integer
+    Dim privateFonts As New PrivateFontCollection()
+    Dim privateFontsB As New PrivateFontCollection()
     Dim CanSaveSettings As Boolean
     Dim FontsArePresent As Boolean
     Dim DefaultFontSize As Integer
@@ -61,9 +63,6 @@ Public Class frmRB4Tier
         If FontsArePresent Then
             DefaultFontSize = 32
 
-            Dim privateFonts As New PrivateFontCollection()
-            Dim privateFontsB As New PrivateFontCollection()
-
             privateFonts.AddFontFile("Sys\Fonts\realfont.ttf")
             privateFontsB.AddFontFile("Sys\Fonts\realfontbold.ttf")
 
@@ -80,9 +79,6 @@ Public Class frmRB4Tier
         lblAlbum.Font = font
         lblGenreT.Font = font
         lblYear.Font = font
-
-        fontBold.Dispose()
-        font.Dispose()
 
     End Sub
 
@@ -444,9 +440,7 @@ Public Class frmRB4Tier
             label.Text = defaultText
 
             'sets the font size back to what it should be
-            Using font As Font = New Font(label.Font.FontFamily, DefaultFontSize, label.Font.Style)
-                label.Font = font
-            End Using
+            label.Font = New Font(label.Font.FontFamily, DefaultFontSize, label.Font.Style)
 
             'else, update the label
         Else
@@ -454,23 +448,17 @@ Public Class frmRB4Tier
 
             'if there is too much text, make the font smaller so that it fits
             While (label.Width() > (My.Resources.blank.Width - 330) And textAdded = True)
-                Using font As Font = New Font(label.Font.FontFamily, (label.Font.Size - 1), label.Font.Style)
-                    label.Font = font
-                End Using
+                label.Font = New Font(label.Font.FontFamily, (label.Font.Size - 1), label.Font.Style)
             End While
 
             'while the user is backspacing, makes the font larger to fit the maximum width
             While (label.Width() < (My.Resources.blank.Width - 330) And label.Font.Size < DefaultFontSize And textAdded = False)
-                Using font As Font = New Font(label.Font.FontFamily, (label.Font.Size + 1), label.Font.Style)
-                    label.Font = font
-                End Using
+                label.Font = New Font(label.Font.FontFamily, (label.Font.Size + 1), label.Font.Style)
             End While
 
             'final buffer for backspacing
             While label.Width() > (My.Resources.blank.Width - 330) And textAdded = False
-                Using font As Font = New Font(label.Font.FontFamily, label.Font.Size - 1, label.Font.Style)
-                    label.Font = font
-                End Using
+                label.Font = New Font(label.Font.FontFamily, label.Font.Size - 1, label.Font.Style)
             End While
 
         End If
@@ -492,21 +480,11 @@ Public Class frmRB4Tier
         Using finalEdit As Graphics = Graphics.FromImage(final)
 
             'draws each of the song info lines with the font size used in the preview
-            Using title As Font = New Font(lblTitle.Font.FontFamily, lblTitle.Font.Size, FontStyle.Bold)
-                finalEdit.DrawString(lblTitle.Text, title, Brushes.White, 320, 17)
-            End Using
+            finalEdit.DrawString(lblTitle.Text, lblTitle.Font, Brushes.White, 320, 17)
+            finalEdit.DrawString(lblAlbum.Text, lblAlbum.Font, Brushes.White, 320, 17 + lblTitle.Height + 6)
+            finalEdit.DrawString(lblGenreT.Text, lblGenreT.Font, Brushes.White, 320, 17 + lblTitle.Height + 6 + lblAlbum.Height + 9)
+            finalEdit.DrawString(lblYear.Text, lblYear.Font, Brushes.White, 320, 17 + lblTitle.Height + 6 + lblAlbum.Height + 9 + lblGenreT.Height + 11)
 
-            Using artist As Font = New Font(lblAlbum.Font.FontFamily, lblAlbum.Font.Size, FontStyle.Regular)
-                finalEdit.DrawString(lblAlbum.Text, artist, Brushes.White, 320, (17 + lblTitle.Height + 6))
-            End Using
-
-            Using genre As Font = New Font(lblGenreT.Font.FontFamily, lblGenreT.Font.Size, FontStyle.Regular)
-                finalEdit.DrawString(lblGenreT.Text, genre, Brushes.White, 320, (17 + lblTitle.Height + 6 + lblAlbum.Height + 9))
-            End Using
-
-            Using year As Font = New Font(lblYear.Font.FontFamily, lblYear.Font.Size, FontStyle.Regular)
-                finalEdit.DrawString(lblYear.Text, year, Brushes.White, 320, (17 + lblTitle.Height + 6 + lblAlbum.Height + 9 + lblGenreT.Height + 11))
-            End Using
         End Using
 
         'adds the images
@@ -611,7 +589,7 @@ Public Class frmRB4Tier
             MessageBox.Show("One or both of the font files could not be found! Please verify that you are running the program in the same directory as the Sys folder, and that all of that folder's contents are present. You will still be able to use the program, but some things may not appear correctly.", "Error Finding Font Files")
             Return False
         End Try
-        Return False
+        Return True
     End Function
 
 End Class
