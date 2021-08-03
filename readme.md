@@ -51,3 +51,8 @@ here, but a quick Google search should be able to be of assistance.
 - Font size is now dynamic, updates automatically, and doesn't run off the edge of the screen
 - Text location is now dynamic, updates automatically, and closes awkward gaps when the text size decreases
 - Text boxes now have a character limit of 175
+
+### v1.3: 3 August 2021:
+- Warning appears if the "Sys" directory cannot be found
+- Warning appears if the fonts cannot be found (but allows the user to continue using the program)
+- Warning appears if the view settings cannot be found (but allows the user to continue using the program, just doesn't save)

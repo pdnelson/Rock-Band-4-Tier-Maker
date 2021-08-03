@@ -6,18 +6,21 @@ Imports System.Drawing.Printing
 
 Public Class frmRB4Tier
 
-    'GLOBAL VARIABLES
     Dim bass(6) As PictureBox
     Dim guitar(6) As PictureBox
     Dim vocal(6) As PictureBox
     Dim drum(6) As PictureBox
     Dim albumArt As Bitmap
-    Dim privateFonts As New PrivateFontCollection()
-    Dim privateFontsB As New PrivateFontCollection()
     Dim fontSize(3) As Integer
+    Dim CanSaveSettings As Boolean
+    Dim FontsArePresent As Boolean
+    Dim DefaultFontSize As Integer
 
-    'FORM LOAD
     Private Sub frmRB4Tier_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'Check for presence of settings file/directory
+        CanSaveSettings = CheckForSettingsFile()
+        FontsArePresent = CheckForFonts()
+
         'initialize the arrays of images
         bass = {picNoBass, picBassDevil, picBass5, picBass4, picBass3, picBass2, picBass1}
         guitar = {picNoGuitar, picGuitarDevil, picGuitar5, picGuitar4, picGuitar3, picGuitar2, picGuitar1}
@@ -34,9 +37,13 @@ Public Class frmRB4Tier
         End If
 
         'checking if the user last had hidden checked or not
-        Dim show As String
-        show = My.Computer.FileSystem.ReadAllText("Sys\Settings\view.txt")
-        If (show.Equals("hide" + vbCrLf)) Then
+        Dim show As String = ""
+
+        If CanSaveSettings Then
+            show = My.Computer.FileSystem.ReadAllText("Sys\Settings\view.txt")
+        End If
+
+        If (show.Contains("hide")) Then
             Me.Size = New Size(789, 329)
             mnuHide.Checked = True
             mnuShow.Checked = False
@@ -48,21 +55,34 @@ Public Class frmRB4Tier
         'sets image to a default value
         albumArt = My.Resources.nopic
 
-        'opens the font files from the system folder
-        privateFonts.AddFontFile("Sys\Fonts\realfont.ttf")
-        privateFontsB.AddFontFile("Sys\Fonts\realfontbold.ttf")
-        Dim fnt As New System.Drawing.Font(privateFonts.Families(0), 32)
-        Dim fntB As New System.Drawing.Font(privateFontsB.Families(0), 32, FontStyle.Bold)
+        Dim font As Font
+        Dim fontBold As Font
 
-        'sets the labels to the font
-        lblTitle.Font = fntB
-        lblAlbum.Font = fnt
-        lblGenreT.Font = fnt
-        lblYear.Font = fnt
+        If FontsArePresent Then
+            DefaultFontSize = 32
 
-        'dispose temporary fonts so they don't hog memory
-        fntB.Dispose()
-        fnt.Dispose()
+            Dim privateFonts As New PrivateFontCollection()
+            Dim privateFontsB As New PrivateFontCollection()
+
+            privateFonts.AddFontFile("Sys\Fonts\realfont.ttf")
+            privateFontsB.AddFontFile("Sys\Fonts\realfontbold.ttf")
+
+            font = New Font(privateFonts.Families(0), DefaultFontSize)
+            fontBold = New Font(privateFontsB.Families(0), DefaultFontSize, FontStyle.Bold)
+        Else
+            DefaultFontSize = 28
+
+            font = New Font(lblAlbum.Font.FontFamily, DefaultFontSize)
+            fontBold = New Font(lblTitle.Font.FontFamily, DefaultFontSize, FontStyle.Bold)
+        End If
+
+        lblTitle.Font = fontBold
+        lblAlbum.Font = font
+        lblGenreT.Font = font
+        lblYear.Font = font
+
+        fontBold.Dispose()
+        font.Dispose()
 
     End Sub
 
@@ -137,22 +157,22 @@ Public Class frmRB4Tier
 
     'SONG TITLE TEXTBOX
     Private Sub txtTitle_TextChanged(sender As Object, e As EventArgs) Handles txtTitle.TextChanged
-        changeText(txtTitle.Text, lblTitle, FontStyle.Bold, "[Title]", privateFontsB.Families(0))
+        changeText(txtTitle.Text, lblTitle, FontStyle.Bold, "[Title]")
     End Sub
 
     'ARTIST TEXTBOX
     Private Sub txtArtist_TextChanged(sender As Object, e As EventArgs) Handles txtArtist.TextChanged
-        changeText(txtArtist.Text, lblAlbum, FontStyle.Regular, "[Artist]", privateFonts.Families(0))
+        changeText(txtArtist.Text, lblAlbum, FontStyle.Regular, "[Artist]")
     End Sub
 
     'GENRE DROP-DOWN
     Private Sub drpGenre_SelectedIndexChanged(sender As Object, e As EventArgs) Handles drpGenre.SelectedIndexChanged
-        changeText(drpGenre.Text, lblGenreT, FontStyle.Regular, "[Genre]", privateFonts.Families(0))
+        changeText(drpGenre.Text, lblGenreT, FontStyle.Regular, "[Genre]")
     End Sub
 
     'YEAR TEXTBOX
     Private Sub txtYear_TextChanged(sender As Object, e As EventArgs) Handles txtYear.TextChanged
-        changeText(txtYear.Text, lblYear, FontStyle.Regular, "[Year]", privateFonts.Families(0))
+        changeText(txtYear.Text, lblYear, FontStyle.Regular, "[Year]")
     End Sub
 
     'SEARCH FOR ALBUM ART
@@ -300,7 +320,7 @@ Public Class frmRB4Tier
 
     'ABOUT
     Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles mnuAbout.Click
-        MessageBox.Show("Rock Band 4 Tier Maker is a free, open source program designed in 2019 by Patrick Nelson (BetaMaster64)." + vbCrLf + vbCrLf + "Version 1.2" + vbCrLf + vbCrLf + "Found a bug? Shoot me an email at supermariokart98@gmail.com!", "About")
+        MessageBox.Show("Rock Band 4 Tier Maker is a free, open source program designed in 2019 by Patrick Nelson (BetaMaster64)." + vbCrLf + vbCrLf + "Version 1.3" + vbCrLf + vbCrLf + "Found a bug? Shoot me an email at supermariokart98@gmail.com!", "About")
     End Sub
 
 
@@ -312,12 +332,14 @@ Public Class frmRB4Tier
     'condition will be the setting that you are saving
     Private Sub saveToFile(path As String, condition As String)
 
-        'opens new StreamWriter, setting append to False
-        Dim file As StreamWriter = My.Computer.FileSystem.OpenTextFileWriter(path, False)
+        If CanSaveSettings Then
+            'opens new StreamWriter, setting append to False
+            Dim file As StreamWriter = My.Computer.FileSystem.OpenTextFileWriter(path, False)
 
-        'write file
-        file.WriteLine(condition)
-        file.Close()
+            'write file
+            file.WriteLine(condition)
+            file.Close()
+        End If
     End Sub
 
     'CHANGE DIFFICULTY PREVIEW UPDATE
@@ -403,47 +425,47 @@ Public Class frmRB4Tier
     'l is the label you are updating, and t is the textbox contents that you are pulling from
     'f is the font style, which is only different if between Title and the rest of the fields
     'defaultText is the text that is present when t is empty
-    Private Sub changeText(t As String, l As Label, f As FontStyle, defaultText As String, family As FontFamily)
+    Private Sub changeText(newText As String, label As Label, fontStyle As FontStyle, defaultText As String)
 
         'determines if text is being removed or added
         Dim textAdded As Boolean = False
-        If (t.Length() < l.Text.Length()) Then
+        If (Text.Length() < label.Text.Length()) Then
             textAdded = False
         Else
             textAdded = True
         End If
 
         'if the textbox is empty, it will return to the default text
-        If (t.Equals("")) Then
-            l.Text = defaultText
+        If (newText.Equals("")) Then
+            label.Text = defaultText
 
             'sets the font size back to what it should be
-            Using font As Font = New System.Drawing.Font(family, 32, f)
-                l.Font = font
+            Using font As Font = New Font(label.Font.FontFamily, DefaultFontSize, fontStyle)
+                label.Font = font
             End Using
 
             'else, update the label
         Else
-            l.Text = t
+            label.Text = newText
 
             'if there is too much text, make the font smaller so that it fits
-            While (l.Width() > (My.Resources.blank.Width - 330) And textAdded = True)
-                Using font As Font = New System.Drawing.Font(family, (l.Font.Size - 1), f)
-                    l.Font = font
+            While (label.Width() > (My.Resources.blank.Width - 330) And textAdded = True)
+                Using font As Font = New Font(label.Font.FontFamily, (label.Font.Size - 1), fontStyle)
+                    label.Font = font
                 End Using
             End While
 
             'while the user is backspacing, makes the font larger to fit the maximum width
-            While (l.Width() < (My.Resources.blank.Width - 330) And l.Font.Size < 32 And textAdded = False)
-                Using font As Font = New System.Drawing.Font(family, (l.Font.Size + 1), f)
-                    l.Font = font
+            While (label.Width() < (My.Resources.blank.Width - 330) And label.Font.Size < DefaultFontSize And textAdded = False)
+                Using font As Font = New Font(label.Font.FontFamily, (label.Font.Size + 1), fontStyle)
+                    label.Font = font
                 End Using
             End While
 
             'final buffer for backspacing
-            If (l.Width() > (My.Resources.blank.Width - 330) And textAdded = False) Then
-                Using font As Font = New System.Drawing.Font(family, (l.Font.Size - 1), f)
-                    l.Font = font
+            If (label.Width() > (My.Resources.blank.Width - 330) And textAdded = False) Then
+                Using font As Font = New Font(label.Font.FontFamily, (label.Font.Size - 1), fontStyle)
+                    label.Font = font
                 End Using
             End If
 
@@ -464,19 +486,19 @@ Public Class frmRB4Tier
         Using finalEdit As Graphics = Graphics.FromImage(final)
 
             'draws each of the song info lines with the font size used in the preview
-            Using title As Font = New System.Drawing.Font(privateFontsB.Families(0), lblTitle.Font.Size, FontStyle.Bold)
+            Using title As Font = New Font(lblTitle.Font.FontFamily, lblTitle.Font.Size, FontStyle.Bold)
                 finalEdit.DrawString(lblTitle.Text, title, Brushes.White, 320, 17)
             End Using
 
-            Using artist As Font = New System.Drawing.Font(privateFonts.Families(0), lblAlbum.Font.Size, FontStyle.Regular)
+            Using artist As Font = New Font(lblAlbum.Font.FontFamily, lblAlbum.Font.Size, FontStyle.Regular)
                 finalEdit.DrawString(lblAlbum.Text, artist, Brushes.White, 320, (17 + lblTitle.Height + 6))
             End Using
 
-            Using genre As Font = New System.Drawing.Font(privateFonts.Families(0), lblGenreT.Font.Size, FontStyle.Regular)
+            Using genre As Font = New Font(lblGenreT.Font.FontFamily, lblGenreT.Font.Size, FontStyle.Regular)
                 finalEdit.DrawString(lblGenreT.Text, genre, Brushes.White, 320, (17 + lblTitle.Height + 6 + lblAlbum.Height + 9))
             End Using
 
-            Using year As Font = New System.Drawing.Font(privateFonts.Families(0), lblYear.Font.Size, FontStyle.Regular)
+            Using year As Font = New Font(lblYear.Font.FontFamily, lblYear.Font.Size, FontStyle.Regular)
                 finalEdit.DrawString(lblYear.Text, year, Brushes.White, 320, (17 + lblTitle.Height + 6 + lblAlbum.Height + 9 + lblGenreT.Height + 11))
             End Using
         End Using
@@ -554,6 +576,36 @@ Public Class frmRB4Tier
         End Using
 
         Return final
+    End Function
+
+    ''' <summary>
+    ''' Checks to see if the settings file is present.
+    ''' </summary>
+    ''' <returns>True if settings can be saved, False otherwise.</returns>
+    Function CheckForSettingsFile() As Boolean
+        Try
+            My.Computer.FileSystem.ReadAllBytes("Sys\Settings\view.txt")
+        Catch e As Exception
+            MessageBox.Show("The settings file could not be found! Please verify that you are running the program in the same directory as the Sys folder, and that all of that folder's contents are present. You will still be able to use the program, but your view settings will not be saved.", "Error Finding Settings File")
+            Return False
+        End Try
+
+        Return True
+    End Function
+
+    ''' <summary>
+    ''' Checks to see if both font files are present (bold and regular).
+    ''' </summary>
+    ''' <returns>True if the fonts were found, False otherwise.</returns>
+    Function CheckForFonts() As Boolean
+        Try
+            My.Computer.FileSystem.ReadAllBytes("Sys\Fonts\realfont.ttf")
+            My.Computer.FileSystem.ReadAllBytes("Sys\Fonts\realfontbold.ttf")
+        Catch e As Exception
+            MessageBox.Show("One or both of the font files could not be found! Please verify that you are running the program in the same directory as the Sys folder, and that all of that folder's contents are present. You will still be able to use the program, but some things may not appear correctly.", "Error Finding Font Files")
+            Return False
+        End Try
+        Return False
     End Function
 
 End Class

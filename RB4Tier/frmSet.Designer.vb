@@ -347,7 +347,7 @@ Partial Class frmRB4Tier
         Me.trkGuitar.Location = New System.Drawing.Point(64, 48)
         Me.trkGuitar.Maximum = 7
         Me.trkGuitar.Name = "trkGuitar"
-        Me.trkGuitar.Size = New System.Drawing.Size(192, 42)
+        Me.trkGuitar.Size = New System.Drawing.Size(192, 45)
         Me.trkGuitar.TabIndex = 6
         Me.trkGuitar.TickStyle = System.Windows.Forms.TickStyle.TopLeft
         '
@@ -358,7 +358,7 @@ Partial Class frmRB4Tier
         Me.trkDrums.Location = New System.Drawing.Point(64, 96)
         Me.trkDrums.Maximum = 7
         Me.trkDrums.Name = "trkDrums"
-        Me.trkDrums.Size = New System.Drawing.Size(192, 42)
+        Me.trkDrums.Size = New System.Drawing.Size(192, 45)
         Me.trkDrums.TabIndex = 7
         Me.trkDrums.TickStyle = System.Windows.Forms.TickStyle.TopLeft
         '
@@ -369,7 +369,7 @@ Partial Class frmRB4Tier
         Me.trkVocals.Location = New System.Drawing.Point(64, 144)
         Me.trkVocals.Maximum = 7
         Me.trkVocals.Name = "trkVocals"
-        Me.trkVocals.Size = New System.Drawing.Size(192, 42)
+        Me.trkVocals.Size = New System.Drawing.Size(192, 45)
         Me.trkVocals.TabIndex = 8
         Me.trkVocals.TickStyle = System.Windows.Forms.TickStyle.TopLeft
         '
@@ -380,7 +380,7 @@ Partial Class frmRB4Tier
         Me.trkBass.Location = New System.Drawing.Point(64, 192)
         Me.trkBass.Maximum = 7
         Me.trkBass.Name = "trkBass"
-        Me.trkBass.Size = New System.Drawing.Size(192, 42)
+        Me.trkBass.Size = New System.Drawing.Size(192, 45)
         Me.trkBass.TabIndex = 9
         Me.trkBass.TickStyle = System.Windows.Forms.TickStyle.TopLeft
         '
@@ -392,11 +392,11 @@ Partial Class frmRB4Tier
         '
         Me.lblTitle.AutoSize = True
         Me.lblTitle.BackColor = System.Drawing.Color.Black
-        Me.lblTitle.Font = New System.Drawing.Font("Agency FB", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblTitle.Font = New System.Drawing.Font("Microsoft Sans Serif", 27.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblTitle.ForeColor = System.Drawing.Color.White
         Me.lblTitle.Location = New System.Drawing.Point(320, 320)
         Me.lblTitle.Name = "lblTitle"
-        Me.lblTitle.Size = New System.Drawing.Size(39, 17)
+        Me.lblTitle.Size = New System.Drawing.Size(115, 42)
         Me.lblTitle.TabIndex = 42
         Me.lblTitle.Text = "[Title]"
         Me.lblTitle.UseMnemonic = False
@@ -405,11 +405,11 @@ Partial Class frmRB4Tier
         '
         Me.lblAlbum.AutoSize = True
         Me.lblAlbum.BackColor = System.Drawing.Color.Black
-        Me.lblAlbum.Font = New System.Drawing.Font("Clutching Toth", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblAlbum.Font = New System.Drawing.Font("Microsoft Sans Serif", 27.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblAlbum.ForeColor = System.Drawing.Color.White
         Me.lblAlbum.Location = New System.Drawing.Point(320, 372)
         Me.lblAlbum.Name = "lblAlbum"
-        Me.lblAlbum.Size = New System.Drawing.Size(70, 18)
+        Me.lblAlbum.Size = New System.Drawing.Size(122, 42)
         Me.lblAlbum.TabIndex = 43
         Me.lblAlbum.Text = "[Artist]"
         Me.lblAlbum.UseMnemonic = False
@@ -418,11 +418,11 @@ Partial Class frmRB4Tier
         '
         Me.lblGenreT.AutoSize = True
         Me.lblGenreT.BackColor = System.Drawing.Color.Black
-        Me.lblGenreT.Font = New System.Drawing.Font("Clutching Toth", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblGenreT.Font = New System.Drawing.Font("Microsoft Sans Serif", 27.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblGenreT.ForeColor = System.Drawing.Color.White
         Me.lblGenreT.Location = New System.Drawing.Point(320, 424)
         Me.lblGenreT.Name = "lblGenreT"
-        Me.lblGenreT.Size = New System.Drawing.Size(72, 18)
+        Me.lblGenreT.Size = New System.Drawing.Size(142, 42)
         Me.lblGenreT.TabIndex = 44
         Me.lblGenreT.Text = "[Genre]"
         Me.lblGenreT.UseMnemonic = False
@@ -431,11 +431,11 @@ Partial Class frmRB4Tier
         '
         Me.lblYear.AutoSize = True
         Me.lblYear.BackColor = System.Drawing.Color.Black
-        Me.lblYear.Font = New System.Drawing.Font("Clutching Toth", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblYear.Font = New System.Drawing.Font("Microsoft Sans Serif", 27.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblYear.ForeColor = System.Drawing.Color.White
         Me.lblYear.Location = New System.Drawing.Point(320, 478)
         Me.lblYear.Name = "lblYear"
-        Me.lblYear.Size = New System.Drawing.Size(56, 18)
+        Me.lblYear.Size = New System.Drawing.Size(117, 42)
         Me.lblYear.TabIndex = 45
         Me.lblYear.Text = "[Year]"
         Me.lblYear.UseMnemonic = False
@@ -444,38 +444,38 @@ Partial Class frmRB4Tier
         '
         Me.mnuCreate.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuExport, Me.mnuCopy, Me.mnuClear})
         Me.mnuCreate.Name = "mnuCreate"
-        Me.mnuCreate.Size = New System.Drawing.Size(52, 20)
+        Me.mnuCreate.Size = New System.Drawing.Size(53, 20)
         Me.mnuCreate.Text = "&Create"
         '
         'mnuExport
         '
         Me.mnuExport.Name = "mnuExport"
-        Me.mnuExport.Size = New System.Drawing.Size(171, 22)
+        Me.mnuExport.Size = New System.Drawing.Size(179, 22)
         Me.mnuExport.Text = "&Export to Image File"
         '
         'mnuCopy
         '
         Me.mnuCopy.Name = "mnuCopy"
-        Me.mnuCopy.Size = New System.Drawing.Size(171, 22)
+        Me.mnuCopy.Size = New System.Drawing.Size(179, 22)
         Me.mnuCopy.Text = "&Copy to Clipboard"
         '
         'mnuClear
         '
         Me.mnuClear.Name = "mnuClear"
-        Me.mnuClear.Size = New System.Drawing.Size(171, 22)
+        Me.mnuClear.Size = New System.Drawing.Size(179, 22)
         Me.mnuClear.Text = "Clear &All"
         '
         'mnuHelp
         '
         Me.mnuHelp.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuAbout})
         Me.mnuHelp.Name = "mnuHelp"
-        Me.mnuHelp.Size = New System.Drawing.Size(40, 20)
+        Me.mnuHelp.Size = New System.Drawing.Size(44, 20)
         Me.mnuHelp.Text = "&Help"
         '
         'mnuAbout
         '
         Me.mnuAbout.Name = "mnuAbout"
-        Me.mnuAbout.Size = New System.Drawing.Size(103, 22)
+        Me.mnuAbout.Size = New System.Drawing.Size(107, 22)
         Me.mnuAbout.Text = "About"
         '
         'mnuMenuStrip
@@ -491,19 +491,19 @@ Partial Class frmRB4Tier
         '
         Me.mnuView.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuHide, Me.mnuShow})
         Me.mnuView.Name = "mnuView"
-        Me.mnuView.Size = New System.Drawing.Size(41, 20)
+        Me.mnuView.Size = New System.Drawing.Size(44, 20)
         Me.mnuView.Text = "&View"
         '
         'mnuHide
         '
         Me.mnuHide.Name = "mnuHide"
-        Me.mnuHide.Size = New System.Drawing.Size(141, 22)
+        Me.mnuHide.Size = New System.Drawing.Size(147, 22)
         Me.mnuHide.Text = "&Hide Preview"
         '
         'mnuShow
         '
         Me.mnuShow.Name = "mnuShow"
-        Me.mnuShow.Size = New System.Drawing.Size(141, 22)
+        Me.mnuShow.Size = New System.Drawing.Size(147, 22)
         Me.mnuShow.Text = "&Show Preview"
         '
         'lblBorderTop
